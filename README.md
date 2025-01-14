@@ -1,8 +1,8 @@
-# Your startup name here
+# Auto Dice Roller
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+A small website where you can roll as many of the standard 7 Dungeons and Dragons dice as you want and your group can see the results.
 
 
 > [!NOTE]
@@ -14,11 +14,11 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 ## 🚀 Specification Deliverable
 
 > [!NOTE]
->  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
+>  Fill in this section as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
+- [x] Proper use of Markdown
 - [ ] A concise and compelling elevator pitch
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
@@ -26,20 +26,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Tired of dice rolling from your table onto the floor? Unsure if your players are fudging the dice they "rolled online"? Have trouble adding the 12 d6 of your rouge's sneak attack damage? Auto Dice Roller is here to solve all of these issues. Each user logs into a homeroom where they can roll as many dice as they need for their campaign. The website will automatically roll the specified number and type of dice and will share the results with the whole group, allowing the Dungeon Master to trust in the roll and preventing the slowdown that comes from players needing to count up each dice!
 
 ### Design
 
-![Design image](placeholder.png)
+![Screenshot 2025-01-13 220358]
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+Here's a brief mockup of what the login screen of the site will look like
 
 ### Key features
 
