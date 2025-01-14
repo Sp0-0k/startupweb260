@@ -19,10 +19,10 @@ A small website where you can roll as many of the standard 7 Dungeons and Dragon
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
@@ -37,20 +37,25 @@ Here's a brief mockup of what the login screen of the site will look like
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Secure login into group rooms
+- Ability to choose one of the 7 standard D&D Dice (d4, d6, d8, d10, d12, d20, d100)
+- Ability to roll any number of the chosen dice
+- Roll totals pushed out to every active user in a group
+- Ability for admin to create new groups and manage which users are allowed in each group
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Two HTML pages, one for login and personal rolls and one for group rolls.
+- **CSS** - Adaptive screen resolution that works for mobile and pc displays. Clear and consistent styling throughout the site.
+- **React** - Provides login and room selection. Receives input for dice rolls to send to the backend.
+- **Service** - Endpoints for:
+  -Login
+  -Rolling dice
+  -Retrieving roll results
+- **DB/Login** - Stores users and created groups in a database. Credentials all stored in a database. Users can only join groups they've been authorized for.
+- **WebSocket** - Whenever a user rolls, broadcast their results to the users in their group.
 
 ## 🚀 AWS deliverable
 
