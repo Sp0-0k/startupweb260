@@ -30,7 +30,8 @@ Tired of dice rolling from your table onto the floor? Unsure if your players are
 
 ### Design
 
-![Screenshot 2025-01-13 220358]
+![Screenshot 2025-01-13 220358](https://github.com/user-attachments/assets/66fa9cab-b3be-403d-a70e-1de6c158a950)
+
 
 Here's a brief mockup of what the login screen of the site will look like
 
