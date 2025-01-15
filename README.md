@@ -48,12 +48,14 @@ Here's a brief mockup of what the login screen of the site will look like
 I am going to use the required technologies in the following ways.
 
 - **HTML** - Two HTML pages, one for login and personal rolls and one for group rolls.
-- **CSS** - Adaptive screen resolution that works for mobile and pc displays. Clear and consistent styling throughout the site.
+- **CSS** - Adaptive screen resolution that works for mobile and pc displays. Clear and consistent styling throughout the site emphasizing the fantasy feel.
 - **React** - Provides login and room selection. Receives input for dice rolls to send to the backend.
 - **Service** - Endpoints for:
   -Login
   -Rolling dice
   -Retrieving roll results
+  -Display random excuses to leave work and play D&D using the https://excuser-three.vercel.app/v1/excuse/office service.
+
 - **DB/Login** - Stores users and created groups in a database. Credentials all stored in a database. Users can only join groups they've been authorized for.
 - **WebSocket** - Whenever a user rolls, broadcast their results to the users in their group.
 
