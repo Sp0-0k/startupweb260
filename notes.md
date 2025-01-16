@@ -28,7 +28,7 @@ Fiber/Hardward, physical connections
 
 -DNS
 Basically a map of URLs to IP addresses
-DNS Record types
+DNS via route 53
 
 -Domain Names
 \[subdomain.\]\*secondary/top
@@ -40,6 +40,10 @@ tld or top level domain
 originals: com, org, edu, gov, mil, int, net
 country: uk, cn, tv, ...
 generic: click, gold, ceo, fishing, ...
+
+
+
+
 
 you buy a sld and can create as many subdomains of the sld as you want
 
