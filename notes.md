@@ -19,10 +19,13 @@ Different layers
 
 -Application:
 HTTPS, Functionality like web browsing
+
 -Transport:
 TCP/UCP, Packet delivery
+
 -Internet:
 IP, Establihing connections, routing
+
 -Link:
 Fiber/Hardward, physical connections
 
