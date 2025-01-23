@@ -1,0 +1,33 @@
+p{
+        color: maroon;
+        background-color: wheat;
+        font-size: 3em;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        text-align: center;
+        padding: 1em;
+        border: darkblue dashed 10px;
+        margin: 0;
+    }
+p:hover{
+        color: white;
+}
+
+#cow{
+    color: red;
+    font-weight: bold
+}
+
+.intro{
+    color: blue;
+    font-weight: bold;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+h1:hover{
+    color: red;
+}
