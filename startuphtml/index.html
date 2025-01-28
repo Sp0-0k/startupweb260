@@ -5,7 +5,7 @@
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>5e Dice Tools</title>
-    <link rel="icon" href="dice.png" />
+    <link rel="icon" href="dice2.png" />
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
 
@@ -17,8 +17,6 @@
       <nav>
         <menu>
           <li><a href="index.html">Home</a></li>
-          <li><a href="play.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
           <li><a href="about.html">About</a></li>
         </menu>
       </nav>
@@ -27,6 +25,7 @@
 
     <main>
       <h1>Welcome to your auto dice roller</h1>
+        <h3>Log in and join a room</h2>
       <form method="get" action="play.html">
         <div>
           <span>@</span>
@@ -42,6 +41,18 @@
         <button type="submit">Login</button>
         <button type="submit">Create</button>
       </form>
+
+        <h3>Or, just roll some dice</h2>
+        <form method="get" action="play.html">
+          <div>
+            <span>🎲</span>
+            <input type="number" placeholder="1" />
+          </div>
+          <div>
+            <span>D</span>
+            <input type="number" placeholder="20" />
+          </div>
+          <button type="submit">Roll</button>
     </main>
 
     <footer>
