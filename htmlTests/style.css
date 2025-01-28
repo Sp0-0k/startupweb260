@@ -1,0 +1,8 @@
+.media{
+    aside{
+    float: right;
+    padding: 3em;
+    margin: 0.5em;
+    border: black solid thin;
+    }
+}
