@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>5e Dice Tools</title>
     <link rel="icon" href="dice2.png" />
@@ -24,7 +23,7 @@
       <hr />
     </header>
 
-
+<p>User: username </br> Room: roomcode</p>
 <h3>Lets, roll some dice</h2>
     <form method="get" action="play.html">
       <div>
@@ -36,6 +35,23 @@
         <input type="number" placeholder="20" />
       </div>
       <button type="submit">Roll</button>
+    </form>
+
+
+      <div id="results">
+        <h2>Results</h2>
+        <img src="rolled_dice.png" alt="a rolled dice" style="width: 20vw; margin-left: auto; margin-right: auto; display: block;" />
+      </div>
+
+      <ul id="roomResults">
+        Rolls in your room:
+        <!--This will eventually link to my WebSocket-->
+        <li class="player-roll">James rolled 1d20: 12</li>
+        <li class="player-roll">Adam rolled 3d6: 9</li>
+        <li class="player-roll">Anna rolled 5d10: 50</li>
+      </ul>
+
+      
 </main>
 
 
