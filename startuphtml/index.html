@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<head>  
-    <title> 5e Dice Tools </title>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Tell browsers not to scale the viewport automatically -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5e Dice Tools</title>
+    <link rel="icon" href="dice.png" />
     <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
+  </head>
 
 
+  <body>
+    <header>
+      <h1>5e Dice Tools<sup>&reg;</sup></h1>
 
-<body>
-        <p> CSS </p>
-        <h1>this is a test</h1>
-        <p id="cow"> Does it work? </p>
-        <p class="intro"> This is also a test</p>
-</body>
+      <nav>
+        <menu>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="play.html">Play</a></li>
+          <li><a href="scores.html">Scores</a></li>
+          <li><a href="about.html">About</a></li>
+        </menu>
+      </nav>
+      <hr />
+    </header>
 
+    <main>
+      <h1>Welcome to your auto dice roller</h1>
+      <form method="get" action="play.html">
+        <div>
+          <span>@</span>
+          <input type="text" placeholder="your@email.com" />
+        </div>
+        <div>
+          <span>🔒</span>
+          <input type="password" placeholder="password" />
+        </div>
+        <div> <span>#</span>
+        <input type="text" placeholder="room code" />
+        </div>
+        <button type="submit">Login</button>
+        <button type="submit">Create</button>
+      </form>
+    </main>
 
+    <footer>
+      <hr />
+      <span class="text-reset">Kirk McMasters</span>
+      <br />
+      <a href="https://github.com/Sp0-0k/startupweb260">GitHub</a>
+    </footer>
+  </body>
 </html>

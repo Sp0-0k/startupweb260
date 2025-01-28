@@ -47,9 +47,6 @@ h1{
     margin: 0;
     padding: 0;
     text-align: center;
-    animation-name: demo;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
 }
 h1:hover{
     color: red;
