@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
+body{
+    background-image: url(paperbackground.jpg);
+}
+
 p{
         color: maroon;
         font-family: sans-serif;
