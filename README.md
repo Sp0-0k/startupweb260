@@ -60,15 +60,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I built three HTML pages that represent the ability to login, roll dice, and get info about the website.
+- [x] **Proper HTML element usage** - I utlized HTML tags to seperate and organize the sections of my website.
+- [x] **Links** - Pages are linked to eachother through the menu. Logging in also take you to the play page.
+- [x] **Text** - Each subsection of the application has meaningful descriptors.
+- [x] **3rd party API placeholder** - Index page has a button placeholder for the api request to generate excuses.
+- [x] **Images** - Play page has a dice that shows the results of the roll. Currently a placeholder for an image that changes based on the roll but I haven't figured that out yet.
+- [x] **Login placeholder** - Login placeholder and submit box is on the main page
+- [x] **DB data placeholder** - Rolls in the room represent data pulled from DB. Will display most recent rolls for that room as saved in a DB
+- [x] **WebSocket placeholder** - Websocket placeholder of rolls from the current room on the play page.
 
 ## 🚀 CSS deliverable
 
