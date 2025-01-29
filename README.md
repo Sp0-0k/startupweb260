@@ -65,7 +65,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Links** - Pages are linked to eachother through the menu. Logging in also take you to the play page.
 - [x] **Text** - Each subsection of the application has meaningful descriptors.
 - [x] **3rd party API placeholder** - Index page has a button placeholder for the api request to generate excuses.
-- [x] **Images** - Play page has a dice that shows the results of the roll. Currently a placeholder for an image that changes based on the roll but I haven't figured that out yet.
+- [x] **Images** - Play page has a dice svg that will show the results of the roll. Also included a background image on all my pages
 - [x] **Login placeholder** - Login placeholder and submit box is on the main page
 - [x] **DB data placeholder** - Rolls in the room represent data pulled from DB. Will display most recent rolls for that room as saved in a DB
 - [x] **WebSocket placeholder** - Websocket placeholder of rolls from the current room on the play page.
