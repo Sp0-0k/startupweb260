@@ -22,6 +22,10 @@ footer{
     flex: 0 30px;
 }
 
+footer a{
+    float: right;
+}
+
 menu{
     flex: 1;
     display: flex;
@@ -34,9 +38,7 @@ menu{
 }
 
 p{
-        color: maroon;
         font-family: sans-serif;
-        font-weight: bold;
         text-align: center;
         padding: 1em;
         margin: 0;
