@@ -26,35 +26,42 @@
     </header>
 
     <main>
-      <p>User: username </br> Room: roomcode</p>
-      <h3>Lets, roll some dice</h2>
+      <div class="container-fluid">
+        <span class="text-reset">Name: username</span>
       </br>
+        <span class="text-reset">Room: roomcode</span>
+      </div>
+      <h1>Lets roll some dice!</h1>
+      
       <form method="get" action="play.html">
-        <div>
-          <span>🎲</span>
-          <input type="number" placeholder="1" />
+        <div data-mdb-input-init class="form-outline" style="width: 7rem; text-align: center;">
+          <input min="1" max="50" type="number" id="typeNumber" class="form-control" />
+          <label class="form-label" id="typeNumber">Number of dice</label>
+      </div>
+      <div style="text-align: center;">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pick a Dice</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">d4</a>
+            <a class="dropdown-item" href="#">d6</a>
+            <a class="dropdown-item" href="#">d8</a>
+            <a class="dropdown-item" href="#">d10</a>
+            <a class="dropdown-item" href="#">d12</a>
+            <a class="dropdown-item" href="#">d20</a>
+            <a class="dropdown-item" href="#">d100</a>
+          </div>  
         </div>
-        <div>
-          <span style="margin: 2.5px;">D</span>
-          <select name="dice">
-            <option value="4">4</option>
-            <option value="6">6</option>
-            <option value="8">8</option>
-            <option value="10">10</option>
-            <option value="12">12</option>
-            <option value="20">20</option>
-            <optoin value="100">100</option>
-          </select>
-          </br></br>
-        </div>
-        <button type="submit">Roll</button>
+      </br>
+        <button class="btn btn-primary"type="submit">Roll</button>
+      </div>
       </form>
+
 
 
       <div id="results">
       <h2>Results</h2>
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-        width="25em" height="25em" viewBox="0 0 641.2 419.7" style="enable-background:new 0 0 641.2 419.7;" xml:space="preserve">
+      <div style="min-width:40vh">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 641.2 419.7" style="enable-background:new 0 0 641.2 419.7;" xml:space="preserve">
         <style type="text/css">
         .st0{fill:#010101;}
         </style>
@@ -62,9 +69,10 @@
         <path class="st0" d="M474.1,363.2l56.2-209.7L376.8,0L167.1,56.2l-56.2,209.7l153.5,153.5L474.1,363.2L474.1,363.2L474.1,363.2z
           M519.8,156.3l-50.6,188.8l-87.6-327L519.8,156.3z M460.9,349.9L129,261L371.9,18.1L460.9,349.9z M174.7,63.8l188.8-50.6
          L124.2,252.6L174.7,63.8z M267.2,408.9L129,270.7l327,87.6L267.2,408.9z"/>
-         <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy="0.3em" font-size="3em">8</text>
+         <text x="50%" y="50%" text-anchor="middle" stroke-width="2px" dy="0.3em" font-size="4em">8</text>
         </g>
         </svg>
+      </div>
      
       </div>
 

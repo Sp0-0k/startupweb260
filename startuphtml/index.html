@@ -30,26 +30,30 @@
     <main>
       <h1>Welcome to your auto dice roller</h1>
         <h3>Log in and join a room</h3>
+
+
       <form method="get" action="play.html">
-        <div>
-          <span>@</span>
-          <input type="text" placeholder="your@email.com" />
+        <div class="form-group">
+          <input type="email" class="form-control centeredText" id="exampleInputEmail" placeholder="your@email.com" />
         </div>
-        <div>
-          <span>🔒</span>
-          <input type="password" placeholder="password" />
+      </br>
+        <div class="form-group">
+          <input type="password" class="form-control centeredText" id="exampleInputPassword" placeholder="password" />
         </div>
-        <div> <span>#</span>
-        <input type="text" placeholder="room code" />
+      </br>
+        <div class="form-group">
+        <input type="text" class="form-control centeredText" id="exampleInputRoomcode" placeholder="room code" />
         </div>  
+      </br>
+        <div class="centeredText">
         <button type="submit" class="btn btn-primary" disabled>Login</button>
         <button type="button" class="btn btn-primary" disabled>Create Account</button>
-
+        </div>
       </form>
     </br>
       <h3>Need an excuse to leave work and play some D&D?</h3>
       <!--This will eventually link to https://excuser-three.vercel.app/-->
-      <button type="button" class="btn btn-primary" onclick="alert('You have a meeting with the CEO')">Generate Excuse</button>
+      <button type="button" class="btn btn-secondary" onclick="alert('You have a meeting with the CEO')">Generate Excuse</button>
 
     </main>
 
@@ -60,6 +64,7 @@
         <a class="text-reset" href="https://github.com/Sp0-0k/startupweb260">GitHub</a>
       </div>
     </footer>
+
   </body>
 </html>
   

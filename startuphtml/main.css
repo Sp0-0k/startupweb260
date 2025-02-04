@@ -4,6 +4,7 @@ body{
     display: flex;
     flex-direction: column;
     min-width: 375px;
+    height:fit-content;
 }
 
 header{
@@ -44,7 +45,11 @@ p{
         margin: 0;
     }
 
-h1{
+.centeredText{
+    text-align: center;
+}
+
+/* h1{
 
     text-align: center;
     font-family: 'Dancing Script', cursive;
@@ -59,14 +64,7 @@ h2{
     font-family: 'Dancing Script', cursive;
     font-weight: bold;
     font-size: 2em;
-}
-
-h3{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    font-size: 1.5em;
-}
+} */
 
 #roomResults{
     margin: 0;
