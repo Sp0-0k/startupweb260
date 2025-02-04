@@ -16,7 +16,7 @@
   <body class="bg-dark text-light">
     <header class="container-fluid">
       <nav class = "navbar fixed-top navbar-dark" style="border-bottom: white thin solid;">
-        <a class = "navbar-brand menuItems" href="#">5e Dice Tools</a>
+        <span><img src="dice2.png" style="height:5vh"/></span><a class = "navbar-brand menuItems" href="#">5e Dice Tools</a>
         <menu class ="navbar-nav">
           <li class="nav-item menuItems"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item menuItems"><a class="nav-link" href="about.html">About</a></li>
@@ -56,6 +56,11 @@
       </div>
       </form>
 
+      <audio autoplay loop>
+        <source src="chillbackground.mp3" type="audio/ogg">
+      </audio>
+        
+
 
 
       <div id="results">
@@ -76,7 +81,7 @@
      
       </div>
 
-      <ul id="roomResults">
+      <ul id="roomResults" class="centeredText">
         Rolls in your room:
         <!--This will eventually link to my WebSocket-->
         <li class="player-roll">James rolled 1d20: 12</li>

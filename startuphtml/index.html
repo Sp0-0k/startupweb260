@@ -18,7 +18,7 @@
   <body class="bg-dark text-light">
     <header class="container-fluid">
       <nav class = "navbar fixed-top navbar-dark" style="border-bottom: white thin solid;">
-        <a class = "navbar-brand menuItems" href="#">5e Dice Tools</a>
+        <span><img src="dice2.png" style="height:5vh"/></span><a class = "navbar-brand menuItems" href="#">5e Dice Tools</a>
         <menu class ="navbar-nav">
           <li class="nav-item menuItems"><a class="nav-link active" href="index.html">Home</a></li>
           <li class="nav-item menuItems"><a class="nav-link" href="about.html">About</a></li>
@@ -34,22 +34,24 @@
 
       <form method="get" action="play.html">
         <div class="form-group">
-          <input type="email" class="form-control centeredText" id="exampleInputEmail" placeholder="your@email.com" />
+          <input type="email" class="form-control centeredText verticalSpacing" id="exampleInputEmail" placeholder="your@email.com" />
         </div>
-      </br>
         <div class="form-group">
-          <input type="password" class="form-control centeredText" id="exampleInputPassword" placeholder="password" />
+          <input type="password" class="form-control centeredText verticalSpacing" id="exampleInputPassword" placeholder="password" />
         </div>
-      </br>
         <div class="form-group">
-        <input type="text" class="form-control centeredText" id="exampleInputRoomcode" placeholder="room code" />
-        </div>  
-      </br>
-        <div class="centeredText">
+        <input type="text" class="form-control centeredText verticalSpacing" id="exampleInputRoomcode" placeholder="room code" />
+        </div> 
+        <div class="centeredText verticalSpacing">
         <button type="submit" class="btn btn-primary" disabled>Login</button>
         <button type="button" class="btn btn-primary" disabled>Create Account</button>
         </div>
       </form>
+
+      <audio autoplay loop>
+        <source src="chillbackground.mp3" type="audio/ogg">
+      </audio>
+        
     </br>
       <h3>Need an excuse to leave work and play some D&D?</h3>
       <!--This will eventually link to https://excuser-three.vercel.app/-->
