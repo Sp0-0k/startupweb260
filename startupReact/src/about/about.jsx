@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Play() {
+export function About() {
   return (
     <main className='container-fluid bg-secondary text-center'>
-      <div>Play displayed here</div>
+      <div>About displayed here</div>
     </main>
   );
 }
