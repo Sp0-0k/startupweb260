@@ -74,7 +74,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x]] **Header, footer, and main content body** - Added seperation of header, footer, and main content body using bootstrap styling.
+- [x] **Header, footer, and main content body** - Added seperation of header, footer, and main content body using bootstrap styling.
 - [x] **Navigation elements** - Put navigation elements in a flex element in my header and styled them with bootstrap.
 - [x] **Responsive to window resizing** - Most of my elements are now responsive to window resizing including my SVG on the play page, the spacing of the text on my about page, and my header and footer changing to fit window sizes.
 - [x] **Application elements** - Clear spacing of elements to access the info from the app you want. Also clear use of color for button elements to differentiate inputs from buttons that send information.
