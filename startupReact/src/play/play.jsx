@@ -2,31 +2,41 @@ import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
-function BasicButtonExample() {
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      dropDownValue: "Select an item"
+    }
+  }
+  changeValue(text) {
+    this.setState({dropDownValue: text})
+  }
+  render(){
   return (
-    <DropdownButton id="dropdown-basic-button" title="Pick a dice">
-          <Dropdown.Item href="#/d4">d4</Dropdown.Item>
-          <Dropdown.Item href="#/d6">d6</Dropdown.Item>
-          <Dropdown.Item href="#/d8">d8</Dropdown.Item>
-          <Dropdown.Item href="#/d10">d10</Dropdown.Item>
-          <Dropdown.Item href="#/d12">d12</Dropdown.Item>
-          <Dropdown.Item href="#/d20">d20</Dropdown.Item>
-          <Dropdown.Item href="#/d100">d100</Dropdown.Item>
+    <DropdownButton id="dropdown-basic-button" title={this.state.dropDownValue}>
+          <Dropdown.Item href="#/d4"><div onClick={(e) => this.changeValue(e.target.textContent)}>d4</div></Dropdown.Item>
+          <Dropdown.Item href="#/d6"><div onClick={(e) => this.changeValue(e.target.textContent)}>d6</div></Dropdown.Item>
+          <Dropdown.Item href="#/d8"><div onClick={(e) => this.changeValue(e.target.textContent)}>d8</div></Dropdown.Item>
+          <Dropdown.Item href="#/d10"><div onClick={(e) => this.changeValue(e.target.textContent)}>d10</div></Dropdown.Item>
+          <Dropdown.Item href="#/d12"><div onClick={(e) => this.changeValue(e.target.textContent)}>d12</div></Dropdown.Item>
+          <Dropdown.Item href="#/d20"><div onClick={(e) => this.changeValue(e.target.textContent)}>d20</div></Dropdown.Item>
+          <Dropdown.Item href="#/d100"><div onClick={(e) => this.changeValue(e.target.textContent)}>d100</div></Dropdown.Item>
     </DropdownButton>
   );
+  }
 }
-
-export default BasicButtonExample;
 
 export function Play() {
   return (
     <main>
-      <div className="container-fluid">
+      <div className="container-fluid" >
         <span className="text-reset">Name: username</span>
       <br />
         <span className="text-reset">Room: roomcode</span>
       </div>
-      <h1 style={{"marginTop" : "0"}}>Lets roll some dice!</h1>
+      <h1>Lets roll some dice!</h1>
       
       <form method="get" action="play.html">
         <div data-mdb-input-init className="form-outline" style={{"width" : "7rem", "textAlign" : "center"}}>
@@ -34,9 +44,9 @@ export function Play() {
           <label className="form-label" id="typeNumber">Number of dice</label>
       </div>
       <div style={{"textAlign" : "center"}}>
-          <BasicButtonExample> </BasicButtonExample>
+        <App></App>
       <br />
-        <button className="btn btn-primary"type="submit">Roll</button>
+        <button className="btn btn-primary centeredText"type="submit">Roll</button>
       </div>
       </form>
 
@@ -57,11 +67,11 @@ export function Play() {
       </div>
       </div>
 
-      <ul id="roomResults" class="centeredText">
+      <ul id="roomResults" className="centeredText">
         Rolls in your room:
-        <li class="player-roll">James rolled 1d20: 12</li>
-        <li class="player-roll">Adam rolled 3d6: 9</li>
-        <li class="player-roll">Anna rolled 5d10: 50</li>
+        <li className="player-roll">James rolled 1d20: 12</li>
+        <li className="player-roll">Adam rolled 3d6: 9</li>
+        <li className="player-roll">Anna rolled 5d10: 50</li>
       </ul>
 
       

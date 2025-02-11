@@ -19,7 +19,7 @@ export function Login() {
             </div> 
             <div className="centeredText verticalSpacing">
             <button type="submit" className="btn btn-primary" disabled>Login</button>
-            <button type="button" className="btn btn-primary" disabled>Create Account</button>
+            <button style={{"marginLeft":"15px"}}type="button" className="btn btn-primary" disabled>Create Account</button>
             </div>
         </form>
             
