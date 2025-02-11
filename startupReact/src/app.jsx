@@ -13,7 +13,7 @@ export default function App() {
   <BrowserRouter>
   <div className='body bg-dark text-light'>
     <header className="container-fluid">
-      <nav className = "navbar fixed-top navbar-dark" style={{"border-bottom" : "white thin solid"}}>
+      <nav className = "navbar fixed-top navbar-dark" style={{"borderBottom" : "white thin solid"}}>
         <span><img src="dice2.png" style={{"height": "5vh"}}/></span><a className = "navbar-brand menuItems" href="#">5e Dice Tools</a>
         <menu className ="navbar-nav">
           <li className="nav-item menuItems"><NavLink className="nav-link active" to="/">Home</NavLink></li>
@@ -35,6 +35,10 @@ export default function App() {
       <div className="container-fluid">
         <span className="text-reset">Kirk McMasters</span>
         <a className="text-reset" href="https://github.com/Sp0-0k/startupweb260">GitHub</a>
+        <audio autoPlay loop>
+            <source src="chillbackground.mp3" type="audio/ogg">
+            </source>
+        </audio>
       </div>
     </footer>
 
@@ -44,5 +48,5 @@ export default function App() {
 };
 
 function NotFound() {
-  return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
+  return <main className='container-fluid text-center'>404: Return to sender. Address unknown.</main>;
 }

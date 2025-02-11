@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Login() {
   return (
-    <main className='container-fluid bg-secondary text-center'>
+    <main className='container-fluid text-center'>
         <h1>Welcome to your auto dice roller</h1>
             <h3>Log in and join a room</h3>
 
@@ -22,15 +22,10 @@ export function Login() {
             <button type="button" className="btn btn-primary" disabled>Create Account</button>
             </div>
         </form>
-
-        <audio autoplay loop>
-            <source src="chillbackground.mp3" type="audio/ogg">
-            </source>
-        </audio>
             
         <br />
         <h3>Need an excuse to leave work and play some D&D?</h3>
-        <button type="button" className="btn btn-secondary" onclick="alert('You have a meeting with the CEO')">Generate Excuse</button>
+        <button type="button" className="btn btn-secondary" onClick={()=>alert('You have a meeting with the CEO')}>Generate Excuse</button>
 
     </main>
   );
