@@ -7,7 +7,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      dropDownValue: "Select an item"
+      dropDownValue: "Pick an dice"
     }
   }
   changeValue(text) {
