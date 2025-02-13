@@ -85,9 +85,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
+- [x] **Bundled using Vite** - Completed!
+- [x] **Components** - Created app components that represent the content of my original html pages. Also implemented music that plays in the bakcground and stays constant between page changes.
+- [x] **Router** - Correct routing between all my pages utilizing a BrowserRouter, a NavBar, and NavLinks
 
 ## 🚀 React part 2: Reactivity
 
