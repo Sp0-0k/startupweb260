@@ -7,6 +7,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { About } from './about/about';
+import { AudioMuteButton } from './audioMute';
 
 export default function App() {
   return (
@@ -35,10 +36,7 @@ export default function App() {
       <div className="container-fluid">
         <span className="text-reset">Kirk McMasters</span>
         <a className="text-reset" href="https://github.com/Sp0-0k/startupweb260">GitHub</a>
-        <audio autoPlay loop>
-            <source src="chillbackground.mp3" type="audio/ogg">
-            </source>
-        </audio>
+        <a><AudioMuteButton /></a>
       </div>
     </footer>
 

@@ -1,10 +1,41 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import react from 'react'
+import reactDOM from 'react-dom'
 import './index.css'
-import App from './App.jsx'
+
+function ColorPicker() {
+  const [text, updateText] = React.useState('red');
+
+  function onChange(e) {
+    updateText(e.target.value);
+  }
+  return (
+    <div>
+      <h1>Survey</h1>
+      <Result selectedColor={text} />
+
+      <p>
+        <span>Type some text: </span>
+        <input type='text' onChange={onChange} defaultValue='red' />
+      </p>
+    </div>
+  );
+}
+
+function Result({ selectedColor }) {
+  return (
+    <div>
+      <p>
+        Your color:
+        <span style={{ color: selectedColor }}>{selectedColor}</span>
+      </p>
+    </div>
+  );
+}
+ 
+
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+  <body>
+    <ColorPicker />
+  </body>
 )
