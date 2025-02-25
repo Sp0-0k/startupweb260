@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthState } from './authState';
 import { Authenticated } from './authenticated';
 import { Unauthenticated } from './unauthenticated';
+import { GetExcuse } from './getExcuse';
 
 
 export function Login({userName, authState, onAuthChange, roomCode}) {
@@ -20,7 +21,7 @@ export function Login({userName, authState, onAuthChange, roomCode}) {
             
         <br />
         <h3>Need an excuse to leave work and play some D&D?</h3>
-        <button type="button" className="btn btn-secondary" onClick={()=>alert('You have a meeting with the CEO')}>Generate Excuse</button>
+        <button type="button" className="btn btn-secondary" onClick={()=>GetExcuse()}>Generate Excuse</button>
 
     </main>
   );
