@@ -4,14 +4,14 @@ import {DiceRoll} from './diceRoll.jsx';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
-export function Play() {
+export function Play(props) {
 
   return (
     <main>
       <div className="container-fluid" >
-        <span className="text-reset">Name: username</span>
+        <span className="text-reset">Name: {props.userName}</span>
       <br />
-        <span className="text-reset">Room: roomcode</span>
+        <span className="text-reset">Room: {props.roomCode}</span>
       </div>
       <h1>Lets roll some dice!</h1>
 

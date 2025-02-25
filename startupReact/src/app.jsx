@@ -8,8 +8,16 @@ import { Login } from './login/login';
 import { Play } from './play/play';
 import { About } from './about/about';
 import { AudioMuteButton } from './audioMute';
+import { AuthState } from './login/authState';
 
 export default function App() {
+
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const [roomCode, setRoomCode] = React.useState(localStorage.getItem('roomCode') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
+
   return (
   <BrowserRouter>
   <div className='body bg-dark text-light'>
@@ -19,14 +27,14 @@ export default function App() {
         <menu className ="navbar-nav">
           <li className="nav-item menuItems"><NavLink className="nav-link" to="/">Home</NavLink></li>
           <li className="nav-item menuItems"><NavLink className="nav-link" to="about">About</NavLink></li>
-          <li className="nav-item menuItems"><NavLink className = "nav-link" to="play">Play</NavLink></li>
+          {authState === AuthState.Authenticated && (<li className="nav-item menuItems"><NavLink className = "nav-link" to="play">Play</NavLink></li>)}
         </menu>
       </nav>
     </header>
 
     <Routes>
-      <Route path='/' element={<Login />} exact />
-      <Route path='/play' element={<Play />} />
+      <Route path='/' element={<Login userName={userName} authState={authState} roomCode={roomCode} onAuthChange={(username, authState, roomCode) => {setAuthState(authState); setUserName(userName); setRoomCode(roomCode)}}/>} exact />
+      <Route path='/play' element={<Play userName={userName} roomCode={roomCode}/>} />
       <Route path='/about' element={<About />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
