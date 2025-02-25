@@ -4,8 +4,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 export function DiceRoll() {
     const[diceTotal, setDiceTotal] = React.useState("");
-    const[diceType, setDiceType] = React.useState(6);
-    const[diceNumber, setDiceNumber] = React.useState(1);
+    const[diceType, setDiceType] = React.useState();
+    const[diceNumber, setDiceNumber] = React.useState(0);
 
     function rollDice(){
         let total = 0;
@@ -16,7 +16,8 @@ export function DiceRoll() {
     }
 
 
-    const titleOfDropdown = `d${diceType}`
+
+    const [titleOfDropdown, setTitleOfDropdown] = React.useState(`Select a dice`);
 
 
     return (
@@ -31,13 +32,13 @@ export function DiceRoll() {
                 <label>Dice type:</label>
             
                 <DropdownButton id="dropdown-basic-button" title={titleOfDropdown}>
-                    <Dropdown.Item href="#/d4"><div onClick={(e) => setDiceType(4)}>d4</div></Dropdown.Item>
-                    <Dropdown.Item href="#/d6"><div onClick={(e) => setDiceType(6)}>d6</div></Dropdown.Item>
-                    <Dropdown.Item href="#/d8"><div onClick={(e) => setDiceType(8)}>d8</div></Dropdown.Item>
-                    <Dropdown.Item href="#/d10"><div onClick={(e) => setDiceType(10)}>d10</div></Dropdown.Item>
-                    <Dropdown.Item href="#/d12"><div onClick={(e) => setDiceType(12)}>d12</div></Dropdown.Item>
-                    <Dropdown.Item href="#/d20"><div onClick={(e) => setDiceType(20)}>d20</div></Dropdown.Item>
-                    <Dropdown.Item href="#/d100"><div onClick={(e) => setDiceType(100)}>d100</div></Dropdown.Item>
+                    <Dropdown.Item href="#/d4"><div onClick={(e) => {setDiceType(4); setTitleOfDropdown("d4")}}>d4</div></Dropdown.Item>
+                    <Dropdown.Item href="#/d6"><div onClick={(e) => {setDiceType(6); setTitleOfDropdown("d6")}}>d6</div></Dropdown.Item>
+                    <Dropdown.Item href="#/d8"><div onClick={(e) => {setDiceType(8); setTitleOfDropdown("d8")}}>d8</div></Dropdown.Item>
+                    <Dropdown.Item href="#/d10"><div onClick={(e) => {setDiceType(10); setTitleOfDropdown("d10")}}>d10</div></Dropdown.Item>
+                    <Dropdown.Item href="#/d12"><div onClick={(e) => {setDiceType(12); setTitleOfDropdown("d12")}}>d12</div></Dropdown.Item>
+                    <Dropdown.Item href="#/d20"><div onClick={(e) => {setDiceType(20); setTitleOfDropdown("d20")}}>d20</div></Dropdown.Item>
+                    <Dropdown.Item href="#/d100"><div onClick={(e) => {setDiceType(100); setTitleOfDropdown("d100")}}>d100</div></Dropdown.Item>
                 </DropdownButton>
                 <br />
                 <button onClick={rollDice} className="btn btn-secondary">Roll</button>
