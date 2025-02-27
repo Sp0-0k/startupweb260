@@ -10,13 +10,14 @@ export function DiceRoll(props) {
     const[diceType, setDiceType] = React.useState();
     const[diceNumber, setDiceNumber] = React.useState(0);
 
-    function rollDice(event){
+    function rollDice(){
         let total = 0;
         for(let i = 0; i < diceNumber; i++){
             total += Math.floor(Math.random() * diceType) + 1;
         }
         setDiceTotal(total);
         localStorage.setItem('diceTotal', total);
+        RollNotifier.broadcastEvent(RollEvent.RollType, diceType, diceNumber, total, props.userName);
     }
 
 

@@ -20,7 +20,7 @@ export function PlayerRolls(props) {
         setEvent((prevEvents) => {
             let newEvents = [event, ...prevEvents];
             if (newEvents.length > 3){
-                newEvents = newEvents.slice(1, 3);
+                newEvents = newEvents.slice(0, 3);
             }
             return newEvents;
         });
