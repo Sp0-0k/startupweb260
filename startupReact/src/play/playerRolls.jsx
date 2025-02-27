@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { RollEvent, RollNotifier } from './roomRolls.js';
+import './play.css';
 
 export function PlayerRolls(props) {
     const userName = props.userName;
@@ -18,8 +19,8 @@ export function PlayerRolls(props) {
     function handleRollEvent(event){
         setEvent((prevEvents) => {
             let newEvents = [event, ...prevEvents];
-            if (newEvents.length > 5){
-                newEvents = newEvents.slice(1, 5);
+            if (newEvents.length > 3){
+                newEvents = newEvents.slice(1, 3);
             }
             return newEvents;
         });
@@ -37,7 +38,6 @@ export function PlayerRolls(props) {
             }
             messageArray.push(
                 <div key={i} className='event'>
-                    <span className={'player-event'}>{event.userName.split('@')[0]}</span>
                     {message}
                 </div>
             );
@@ -46,9 +46,8 @@ export function PlayerRolls(props) {
     }
 
     return (
-        <div className='players'>
-            Player
-            <span className='player-name'>{userName}</span>
+        <div className='players centered-text'>
+            Current Rolls:
             <div id='player-messages'>{createMessageArray()}</div>
     </div>
   );

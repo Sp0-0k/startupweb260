@@ -6,11 +6,12 @@ const RollEvent = {
 };
 
 class RollEventMessage {
-    constructor(diceSides, diceNum, diceTotal, userName) {
+    constructor(type, diceSides, diceNum, diceTotal, userName) {
         this.diceSides = diceSides;
         this.diceNum = diceNum;
         this.diceTotal = diceTotal;
-        this.userName = userName;   
+        this.userName = userName;
+        this.type = type;   
     }
 }
 
@@ -23,14 +24,15 @@ class RollMessageNotifier {
         setInterval(() => {
             const diceType = 20;
             const diceNumber = Math.floor(Math.random() * 10) + 1;
-            const total = 5;
+            const total = 3;
             const userName = 'James';
-            this.broadcastEvent(diceType, diceNumber, total, userName);
-        })
+            const type = 'roll';
+            this.broadcastEvent(RollEvent.RollType, diceType, diceNumber, total, userName);
+        }, 5000);
     }
 
-    broadcastEvent(diceSides, diceNum, diceTotal, userName) {
-        const event = new RollEventMessage(diceSides, diceNum, diceTotal, userName);
+    broadcastEvent(type, diceSides, diceNum, diceTotal, userName) {
+        const event = new RollEventMessage(type, diceSides, diceNum, diceTotal, userName);
         this.receiveEvent(event);
     }
 

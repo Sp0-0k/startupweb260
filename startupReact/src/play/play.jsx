@@ -19,7 +19,7 @@ export function Play(props) {
 
       <DiceRoll diceTotal={diceTotal}/>
 
-      {/* <PlayerRolls userName={props.userName} /> */}
+      <PlayerRolls userName={props.userName} />
 
       
     </main>
