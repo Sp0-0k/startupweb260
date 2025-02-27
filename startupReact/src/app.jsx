@@ -33,7 +33,7 @@ export default function App() {
     </header>
 
     <Routes>
-      <Route path='/' element={<Login userName={userName} authState={authState} roomCode={roomCode} onAuthChange={(username, authState, roomCode) => {setAuthState(authState); setUserName(userName); setRoomCode(roomCode)}}/>} exact />
+      <Route path='/' element={<Login userName={userName} authState={authState} roomCode={roomCode} onAuthChange={(userName, authState, roomCode) => {setAuthState(authState); setUserName(userName); setRoomCode(roomCode)}}/>} exact />
       <Route path='/play' element={<Play userName={userName} roomCode={roomCode}/>} />
       <Route path='/about' element={<About />} />
       <Route path='*' element={<NotFound />} />
