@@ -93,8 +93,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - Mocked out login, mocked out websocket on play page, implemented dice rolls, implemented 3rd party api call
+- [x] **Hooks** - useState hooks for lots of changing variables throughout, useEffect hook explicitly utilized in playerRolls.jsx and implicitly called throughout
 
 ## 🚀 Service deliverable
 
