@@ -73,11 +73,12 @@ const RollEvent = {
 
 class RollEventMessage {
     constructor(type, diceSides, diceNum, diceTotal, userName) {
+        this.type = type;
         this.diceSides = diceSides;
         this.diceNum = diceNum;
         this.diceTotal = diceTotal;
         this.userName = userName;
-        this.type = type;   
+        this.timestamp = Date.now();
     }
 }
 
@@ -114,9 +115,93 @@ class RollMessageNotifier {
         this.events.push(event);
         this.handlers.forEach((h) => h(event));
     }
+}
 
+// Function to save a roll to the server
+async function saveRollToServer(diceSides, diceNum, diceTotal, userName, roomCode) {
+  try {
+    const response = await fetch('/api/roll', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        diceSides,
+        diceNum,
+        diceTotal,
+        userName,
+        type: 'roll',
+        roomCode
+      })
+    });
+    return await response.json();
+  } catch (error) {
+    console.error('Error saving roll:', error);
+  }
+}
 
+// Fix fetchRecentRolls to use RollEventMessage instead of RollEvent
+async function fetchRecentRolls(roomCode = null, limit = 10) {
+  try {
+    let url = `/api/rolls?limit=${limit}`;
+    if (roomCode) {
+      url += `&roomCode=${roomCode}`;
+    }
+    
+    console.log(`Fetching rolls from: ${url}`);
+    const response = await fetch(url);
+    
+    // Check if response is ok
+    if (!response.ok) {
+      throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    console.log('Received roll data:', data);
+    
+    // Convert server data to roll events
+    // Make sure you're using the correct constructor from your code
+    return data.rolls.map(roll => new RollEventMessage(
+      roll.type,
+      roll.diceSides,
+      roll.diceNum,
+      roll.diceTotal,
+      roll.userName
+    ));
+  } catch (error) {
+    console.error('Error fetching rolls:', error);
+    return []; // Return empty array on error
+  }
+}
+
+// Then modify your existing roll functions to save to server
+// For example, in your performRoll function:
+function performRoll(userName, diceSides, diceNum, roomCode) {
+  // Your existing dice rolling logic
+  const diceTotal = calculateDiceRoll(diceNum, diceSides);
+  
+  // Create local event
+  const rollEvent = new RollEvent(userName, diceSides, diceNum, diceTotal, RollEvent.RollType);
+  
+  // Notify local listeners
+  RollNotifier.notifyHandlers(rollEvent);
+  
+  // Save to server
+  saveRollToServer(diceSides, diceNum, diceTotal, userName, roomCode);
+  
+  return rollEvent;
+}
+
+// Fix the loadRollHistory function to properly return a Promise
+function loadRollHistory(roomCode) {
+  return fetchRecentRolls(roomCode).then(rolls => {
+    // Process each roll through the notifier system
+    rolls.forEach(roll => {
+      RollNotifier.notifyHandlers(roll);
+    });
+    return rolls; // Return rolls to continue the Promise chain
+  });
 }
 
 const RollNotifier = new RollMessageNotifier();
-export { RollEvent, RollNotifier };
+export { RollEvent, RollNotifier, saveRollToServer, fetchRecentRolls, loadRollHistory };

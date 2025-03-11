@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
 const uuid = require('uuid');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -100,10 +100,64 @@ function clearAuthCookie(res, user) {
 
 let rolls = [];
 
+// POST endpoint to save a new roll event
+apiRouter.post('/roll', (req, res) => {
+  const { diceSides, diceNum, diceTotal, userName, type, roomCode } = req.body;
+  
+  // Validate the required fields
+  if (!diceSides || !diceNum || !diceTotal || !userName || !type) {
+    return res.status(400).send({ msg: 'Missing required roll data' });
+  }
+  
+  // Create a new roll event with timestamp
+  const roll = {
+    diceSides,
+    diceNum,
+    diceTotal,
+    userName,
+    type,
+    roomCode, // Optional, to filter rolls by room
+    timestamp: Date.now()
+  };
+  
+  // Add to beginning of array to keep most recent first
+  rolls.unshift(roll);
+  
+  // Limit array size to prevent memory issues (keep last 100 rolls)
+  if (rolls.length > 100) {
+    rolls = rolls.slice(0, 100);
+  }
+  
+  res.status(201).send({ msg: 'Roll saved', roll });
+});
 
+// GET endpoint to retrieve recent rolls
+apiRouter.get('/rolls', (req, res) => {
+  const { roomCode, limit = 10 } = req.query;
+  
+  let filteredRolls = rolls;
+  
+  // Filter by room code if provided
+  if (roomCode) {
+    filteredRolls = rolls.filter(roll => roll.roomCode === roomCode);
+  }
+  
+  // Return only the requested number of recent rolls
+  const recentRolls = filteredRolls.slice(0, Math.min(parseInt(limit), 50));
+  
+  res.send({ rolls: recentRolls });
+});
 
-//Put code here
-
+// GET endpoint to retrieve a specific roll by ID (if needed later)
+apiRouter.get('/roll/:id', (req, res) => {
+  const roll = rolls.find(r => r.id === req.params.id);
+  
+  if (!roll) {
+    return res.status(404).send({ msg: 'Roll not found' });
+  }
+  
+  res.send({ roll });
+});
 
 const port = 3000;
 app.listen(port, function () {

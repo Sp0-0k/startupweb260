@@ -1,20 +1,32 @@
 import React from 'react';
 
-import { RollEvent, RollNotifier } from './roomRolls.js';
+import { RollEvent, RollNotifier, loadRollHistory } from './roomRolls.js';
 import './play.css';
 
 export function PlayerRolls(props) {
     const userName = props.userName;
+    const roomCode = props.roomCode; // Make sure to pass roomCode as a prop
 
     const [events, setEvent] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
 
+    // Existing useEffect for event handlers
     React.useEffect(() => {
         RollNotifier.addHandler(handleRollEvent);
 
         return () => {
             RollNotifier.removeHandler(handleRollEvent);
         };
-}, []);
+    }, []);
+
+    // New useEffect to load roll history when component mounts or roomCode changes
+    React.useEffect(() => {
+        if (roomCode) {
+            setLoading(true);
+            loadRollHistory(roomCode)
+                .finally(() => setLoading(false));
+        }
+    }, [roomCode]);
 
     function handleRollEvent(event){
         setEvent((prevEvents) => {
@@ -48,7 +60,8 @@ export function PlayerRolls(props) {
     return (
         <div className='players centered-text'>
             Current Rolls:
+            {loading ? <div>Loading history...</div> : null}
             <div id='player-messages'>{createMessageArray()}</div>
-    </div>
-  );
+        </div>
+    );
 }
