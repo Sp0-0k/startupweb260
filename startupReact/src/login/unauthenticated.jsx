@@ -9,15 +9,30 @@ export function Unauthenticated(props) {
   const [roomCode, setRoomCode] = React.useState('');
 
   async function loginUser() {
-    localStorage.setItem('userName', userName);
-    localStorage.setItem('roomCode', roomCode);
-    props.onLogin(userName, roomCode);
+    loginOrCreate('/api/auth/login');
   }
 
   async function createUser() {
-    localStorage.setItem('userName', userName);
-    localStorage.setItem('roomCode', roomCode);
-    props.onLogin(userName, roomCode);
+    loginOrCreate('/api/auth/create');
+  }
+
+
+  async function loginOrCreate(endpoint) {
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ name: userName, password: password, roomCode: roomCode }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+    if (response?.status === 200) {
+      localStorage.setItem('userName', userName);
+      localStorage.setItem('roomCode', roomCode);
+      props.onLogin(userName, roomCode);
+    } else {
+      const body = await response.json();
+      setDisplayError(`⚠ Error: ${body.msg}`);
+    }
   }
 
 

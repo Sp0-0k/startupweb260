@@ -35,6 +35,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<Login userName={userName} authState={authState} roomCode={roomCode} onAuthChange={(userName, authState, roomCode) => {setAuthState(authState); setUserName(userName); setRoomCode(roomCode)}}/>} exact />
       <Route path='/play' element={<Play userName={userName} roomCode={roomCode}/>} />
+      <Route path= '/room' element={<Play userName={userName} roomCode={roomCode}/>} />
       <Route path='/about' element={<About />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
