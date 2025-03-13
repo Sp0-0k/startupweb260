@@ -7,6 +7,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Play } from './play/play';
 import { About } from './about/about';
+import { Room } from './room/room';
 import { AudioMuteButton } from './audioMute';
 import { AuthState } from './login/authState';
 
@@ -28,6 +29,7 @@ export default function App() {
           <li className="nav-item menuItems"><NavLink className="nav-link" to="/">Home</NavLink></li>
           <li className="nav-item menuItems"><NavLink className="nav-link" to="about">About</NavLink></li>
           {authState === AuthState.Authenticated && (<li className="nav-item menuItems"><NavLink className = "nav-link" to="play">Play</NavLink></li>)}
+          {authState === AuthState.Authenticated && (<li className="nav-item menuItems"><NavLink className = "nav-link" to="room">Room</NavLink></li>)}
         </menu>
       </nav>
     </header>
@@ -35,7 +37,7 @@ export default function App() {
     <Routes>
       <Route path='/' element={<Login userName={userName} authState={authState} roomCode={roomCode} onAuthChange={(userName, authState, roomCode) => {setAuthState(authState); setUserName(userName); setRoomCode(roomCode)}}/>} exact />
       <Route path='/play' element={<Play userName={userName} roomCode={roomCode}/>} />
-      <Route path= '/room' element={<Play userName={userName} roomCode={roomCode}/>} />
+      <Route path= '/room' element={<Room userName={userName} roomCode={roomCode}/>} />
       <Route path='/about' element={<About />} />
       <Route path='*' element={<NotFound />} />
     </Routes>

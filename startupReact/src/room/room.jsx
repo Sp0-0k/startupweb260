@@ -1,30 +1,31 @@
 import React from 'react';
 
-import './Room.css';
+import './room.css';
 
 export function Room(props) {
   const [rolls, setRolls] = React.useState([]);
 
-  // Demonstrates calling a service asynchronously so that
-  // React can properly update state objects with the results.
+
   React.useEffect(() => {
-    fetch('/api/rolls/${props.roomCode}')
+    fetch(`/api/rolls`)
       .then((response) => response.json())
       .then((rolls) => {
         setRolls(rolls);
       });
   }, []);
 
-  // Demonstrates rendering an array with React
   const rollsRows = [];
   if (rolls.length) {
-    for (const [i, roll] of rolls.entries()) {
+    // Create a copy of the array and reverse it so newest rolls appear first
+    const reversedRolls = [...rolls].reverse();
+    
+    for (const [i, roll] of reversedRolls.entries()) {
       rollsRows.push(
         <tr key={i}>
-          <td>{i}</td>
           <td>{roll.name.split('@')[0]}</td>
-          <td>{roll.score}</td>
-          <td>{roll.date}</td>
+          <td>{roll.total}</td>
+          <td>{roll.diceType}</td>
+          <td>{roll.diceNumber}</td>
         </tr>
       );
     }
@@ -37,17 +38,17 @@ export function Room(props) {
   }
 
   return (
-    <main className='container-fluid bg-secondary text-center'>
+    <main className='container-fluid bg-dark text-center'>
       <table className='table table-warning table-striped-columns'>
         <thead className='table-dark'>
           <tr>
-            <th>#</th>
             <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
+            <th>Total</th>
+            <th>Dice Type</th>
+            <th>Number of Dice</th>
           </tr>
         </thead>
-        <tbody id='scores'>{scoreRows}</tbody>
+        <tbody id='rolls'>{rollsRows}</tbody>
       </table>
     </main>
   );

@@ -87,14 +87,28 @@ class RollMessageNotifier {
 
     constructor() {
 
-        setInterval(() => {
+        setInterval(async () => {
             const diceType = pickDice(Math.floor(Math.random() * 6));
             const diceNumber = Math.floor(Math.random() * 10) + 1;
             const total = rollDice(diceNumber, diceType);
             const userName = randUser(Math.floor(Math.random() * 6));
             const type = 'roll';
+
+            await fetch('/api/rolls', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: userName,
+                    total: total,
+                    room: '000',
+                    diceType: diceType,
+                    diceNumber: diceNumber
+                }),
+            })
             this.broadcastEvent(RollEvent.RollType, diceType, diceNumber, total, userName);
-        }, 5000);
+        }, 10000);
     }
 
     broadcastEvent(type, diceSides, diceNum, diceTotal, userName) {

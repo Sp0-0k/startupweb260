@@ -10,13 +10,25 @@ export function DiceRoll(props) {
     const[diceType, setDiceType] = React.useState();
     const[diceNumber, setDiceNumber] = React.useState(0);
 
-    function rollDice(){
+    async function rollDice(){
         let total = 0;
         for(let i = 0; i < diceNumber; i++){
             total += Math.floor(Math.random() * diceType) + 1;
         }
-        setDiceTotal(total);
-        localStorage.setItem('diceTotal', total);
+        setDiceTotal(total, diceType, diceNumber);
+        await fetch('/api/rolls', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: props.userName,
+                total: total,
+                room: props.roomCode,
+                diceType: diceType,
+                diceNumber: diceNumber
+            }),
+        })
         RollNotifier.broadcastEvent(RollEvent.RollType, diceType, diceNumber, total, props.userName);
     }
 
