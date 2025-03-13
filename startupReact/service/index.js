@@ -18,8 +18,6 @@ let users = [];
 let rollMessages = [];
 
 
-// Authentication HTTP Requests:
-
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('name', req.body.name)) {
     res.status(409).send({ msg: 'Existing user' });
@@ -31,7 +29,6 @@ apiRouter.post('/auth/create', async (req, res) => {
   }
 });
 
-// GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
   const user = await findUser('name', req.body.name);
   if (user) {
@@ -45,7 +42,6 @@ apiRouter.post('/auth/login', async (req, res) => {
   res.status(401).send({ msg: 'Unauthorized' });
 });
 
-// DeleteAuth logout a user
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
@@ -55,7 +51,6 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   res.status(204).end();
 });
 
-// Middleware to verify that the user is authorized to call an endpoint
 const verifyAuth = async (req, res, next) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
@@ -65,28 +60,23 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-// GetScores
-apiRouter.get('/scores', verifyAuth, (_req, res) => {
+apiRouter.get('/rolls', verifyAuth, (_req, res) => {
   res.send(scores);
 });
 
-// SubmitScore
 apiRouter.post('/score', verifyAuth, (req, res) => {
   scores = updateScores(req.body);
   res.send(scores);
 });
 
-// Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
 });
 
-// Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-// updateScores considers a new score for inclusion in the high scores.
 function updateScores(newScore) {
   let found = false;
   for (const [i, prevScore] of scores.entries()) {
@@ -127,7 +117,6 @@ async function findUser(field, value) {
   return users.find((u) => u[field] === value);
 }
 
-// setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
     secure: true,
