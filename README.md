@@ -104,7 +104,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Static middleware for frontend** - Done!
 - [x] **Calls to third party endpoints** -  Done, it's the button for excuses on the authenticated page!
 - [x] **Backend service endpoints** - Done, endpoints for login and roll saving stored in server memory currently.
-- [x] **Frontend calls service endpoints** - Lots of fetch requests implemented!
+- [x] **Frontend calls service endpoints** - Lots of fetch requests implemented! Currently no error message for exsisting users or bad password for login and registration which I need to change later.
 - [x] **Supports registration, login, logout, and restricted endpoint** - Account creation (registration), login to exsisting user, logout, and a restricted endpoint for retreiving the rolls were all added. I'll go back and make the endpoint for posting scores restricted after the websocket implementation.
 
 ## 🚀 DB/Login deliverable
