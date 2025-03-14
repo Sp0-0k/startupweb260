@@ -100,11 +100,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** -  Done!
+- [x] **Static middleware for frontend** - Done!
+- [x] **Calls to third party endpoints** -  Done, it's the button for excuses on the authenticated page!
+- [x] **Backend service endpoints** - Done, endpoints for login and roll saving stored in server memory currently.
+- [x] **Frontend calls service endpoints** - Lots of fetch requests implemented!
+- [x] **Supports registration, login, logout, and restricted endpoint** - Account creation (registration), login to exsisting user, logout, and a restricted endpoint for retreiving the rolls were all added. I'll go back and make the endpoint for posting scores restricted after the websocket implementation.
 
 ## 🚀 DB/Login deliverable
 
