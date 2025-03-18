@@ -18,38 +18,44 @@ async function testLogin() {    try {
     
  } }
 
-async function main() {
-    testLogin();
-
-try{
-    // const house = {
-    //     name: 'Beachfront views',
-    //     summary: 'From your bedroom to the beach, no shoes required',
-    //     property_type: 'Condo',
-    //     beds: 1,
-    //   };
-    
-    // await collection.insertOne(house);
-
-    //const query = { property_type: 'Condo', beds: { $lt: 2 } };
-    
-    // const options = {
-    // sort: { score: -1 },
-    // limit: 10,
-    // };
-    // const cursor = collection.find(query, options);
-    // await cursor.forEach(doc => console.log(doc));
-
-    await collection.deleteMany(query)
-}
-     
-     
-     
-    finally {
-        await client.close();
+async function rollInsert(roomCode, userName, diceType, diceNumber, totalRoll) {
+    const rollResult = {
+    roomCode: roomCode,
+    userName: userName,
+    diceType: diceType,
+    diceNumber: diceNumber,
+    totalRoll: totalRoll,
+    date: new Date()
     }
+    await collection.insertOne(rollResult);
+ }
+
+function findRolls(roomCode) {
+    const query = { roomCode: roomCode };
+    const options = {
+        sort: { date: -1 },
+        limit: 12,
+    };
+    const cursor = collection.find(query, options);
+    return cursor.toArray();
 }
 
+async function addUser(uuid, password) {
+    const user = {
+    uuid: uuid,
+    password: password
+    };
+    await collection.insertOne(user);
+ }
 
+function findUser(uuid) {
+    return collection.findOne({ uuid: uuid });
+}
 
-main().then(() => {console.log('Done');});
+module.exports = {
+    testLogin,
+    rollInsert,
+    findRolls,
+    addUser,
+    findUser
+}

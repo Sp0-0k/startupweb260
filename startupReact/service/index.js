@@ -3,6 +3,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const uuid = require('uuid');
 const bcrypt = require('bcryptjs');
+const DP = require('./database.js');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -34,6 +35,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await Db.findUser(user.token);
       setAuthCookie(res, user.token);
       res.status(200).send({ name: user.name });
       return;
