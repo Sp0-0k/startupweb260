@@ -3,7 +3,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const uuid = require('uuid');
 const bcrypt = require('bcryptjs');
-const DP = require('./database.js');
+const DB = require('./database.js');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -15,9 +15,15 @@ var apiRouter = express.Router();
 app.use('/api', apiRouter);
 const authCookieName = 'token';
 
-let users = [];
-let rollMessages = [];
-
+async function initDatabase() {
+  try {
+    await DB.testLogin(); // Ensure this is called when server starts
+    console.log('Successfully connected to MongoDB');
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+    process.exit(1);
+  }
+}
 
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('name', req.body.name)) {
@@ -31,17 +37,25 @@ apiRouter.post('/auth/create', async (req, res) => {
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
-  const user = await findUser('name', req.body.name);
-  if (user) {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      user.token = uuid.v4();
-      await Db.findUser(user.token);
-      setAuthCookie(res, user.token);
-      res.status(200).send({ name: user.name });
-      return;
+  try {
+    const user = await findUser('name', req.body.name);
+    if (user) {
+      if (await bcrypt.compare(req.body.password, user.password)) {
+        const token = uuid.v4();
+        
+        // Update the user's token in MongoDB (add this function to your DB module)
+        await DB.updateUserToken(user.uuid, token);
+        
+        setAuthCookie(res, token);
+        res.status(200).send({ userName: user.userName });
+        return;
+      }
     }
+    res.status(401).send({ msg: 'Unauthorized' });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).send({ msg: 'Server error during login' });
   }
-  res.status(401).send({ msg: 'Unauthorized' });
 });
 
 apiRouter.delete('/auth/logout', async (req, res) => {
@@ -62,13 +76,10 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-apiRouter.get('/rolls', verifyAuth, (_req, res) => {
-  res.send(rollMessages);
-});
-
-apiRouter.post('/rolls', verifyAuth, (req, res) => {
-  rollMessages = updateRolls(req.body);
-  res.send(rollMessages);
+apiRouter.get('/rolls', verifyAuth, async (req, res) => {
+  const roomCode = req.query.roomCode;
+  const rolls = await DB.findRolls(roomCode);
+  res.send(rolls);
 });
 
 app.use(function (err, req, res, next) {
@@ -80,10 +91,7 @@ app.use((_req, res) => {
 });
 
 function updateRolls(newRoll) {
-  rollMessages.push(newRoll);
-  if (rollMessages.length > 10) {
-    rollMessages.shift();
-  }
+  DB.insertRoll(newRoll.roomCode, newRoll.userName, newRoll.diceType, newRoll.diceNumber, newRoll.totalRoll);
   return rollMessages;
 }
 
@@ -91,11 +99,11 @@ async function createUser(name, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = {
-    name: name,
+    userName: name,
+    uuid: uuid.v4(),
     password: passwordHash,
-    token: uuid.v4(),
   };
-  users.push(user);
+  await DB.addUser(user.userName, user.uuid, user.password);
 
   return user;
 }
@@ -103,7 +111,11 @@ async function createUser(name, password) {
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if(field === "token"){
+    return DB.findUserToken(value);
+  }
+
+  return DB.findUser(value);
 }
 
 function setAuthCookie(res, authToken) {
@@ -114,6 +126,10 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+initDatabase().then(() => {
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
+}).catch(error => {
+  console.error('Startup error:', error);
 });
