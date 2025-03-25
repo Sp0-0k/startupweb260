@@ -22,9 +22,9 @@ export function DiceRoll(props) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: props.userName,
-                total: total,
-                room: props.roomCode,
+                userName: props.userName,
+                totalRoll: total,
+                roomCode: props.roomCode,
                 diceType: diceType,
                 diceNumber: diceNumber
             }),

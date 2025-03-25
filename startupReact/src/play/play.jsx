@@ -17,9 +17,9 @@ export function Play(props) {
       </div>
       <h1>Lets roll some dice!</h1>
 
-      <DiceRoll diceTotal={diceTotal} userName={props.userName}/>
+      <DiceRoll diceTotal={diceTotal} userName={props.userName} roomCode={props.roomCode}/>
 
-      <PlayerRolls userName={props.userName} />
+      <PlayerRolls userName={props.userName} roomCode={props.roomCode} />
 
       
     </main>

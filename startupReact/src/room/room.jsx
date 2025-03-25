@@ -7,7 +7,7 @@ export function Room(props) {
 
 
   React.useEffect(() => {
-    fetch(`/api/rolls`)
+    fetch(`/api/rolls/${props.roomCode}`)
       .then((response) => response.json())
       .then((rolls) => {
         setRolls(rolls);
@@ -19,13 +19,13 @@ export function Room(props) {
     // Create a copy of the array and reverse it so newest rolls appear first
     const reversedRolls = [...rolls].reverse();
     
-    for (const [i, roll] of reversedRolls.entries()) {
+    for (const [i, rolls] of reversedRolls.entries()) {
       rollsRows.push(
         <tr key={i}>
-          <td>{roll.name.split('@')[0]}</td>
-          <td>{roll.total}</td>
-          <td>{roll.diceType}</td>
-          <td>{roll.diceNumber}</td>
+          <td>{rolls.userName.split('@')[0]}</td>
+          <td>{rolls.totalRoll}</td>
+          <td>{rolls.diceType}</td>
+          <td>{rolls.diceNumber}</td>
         </tr>
       );
     }

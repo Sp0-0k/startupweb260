@@ -15,6 +15,7 @@ var apiRouter = express.Router();
 app.use('/api', apiRouter);
 const authCookieName = 'token';
 
+
 async function initDatabase() {
   try {
     await DB.testLogin(); // Ensure this is called when server starts
@@ -76,8 +77,8 @@ const verifyAuth = async (req, res, next) => {
   }
 };
 
-apiRouter.get('/rolls', verifyAuth, async (req, res) => {
-  const roomCode = req.query.roomCode;
+apiRouter.get('/rolls/:roomCode', verifyAuth, async (req, res) => {
+  const roomCode = req.params.roomCode;
   const rolls = await DB.findRolls(roomCode);
   res.send(rolls);
 });
@@ -90,10 +91,10 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-function updateRolls(newRoll) {
-  DB.insertRoll(newRoll.roomCode, newRoll.userName, newRoll.diceType, newRoll.diceNumber, newRoll.totalRoll);
-  return rollMessages;
-}
+apiRouter.post('/rolls', verifyAuth, async (req, res) => {
+  await DB.rollInsert(req.body);
+  res.status(201).send({ msg: 'Roll inserted successfully' });
+});
 
 async function createUser(name, password) {
   const passwordHash = await bcrypt.hash(password, 10);

@@ -100,9 +100,9 @@ class RollMessageNotifier {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    name: userName,
-                    total: total,
-                    room: '000',
+                    userName: userName,
+                    totalRoll: total,
+                    roomCode: '000',
                     diceType: diceType,
                     diceNumber: diceNumber
                 }),
