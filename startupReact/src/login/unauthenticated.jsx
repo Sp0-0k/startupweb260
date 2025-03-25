@@ -42,7 +42,7 @@ return (
         <h3>Log in and join a room</h3>
         <form method="get" action="play.html">
             <div className="form-group">
-                <input type="email" className="form-control centeredText verticalSpacing" id="exampleInputEmail" placeholder="your@email.com" onChange={(e) => setUserName(e.target.value)}/>
+                <input type="email" className="form-control centeredText verticalSpacing" id="exampleInputEmail" placeholder="username" onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div className="form-group">
                 <input type="password" className="form-control centeredText verticalSpacing" id="exampleInputPassword" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
