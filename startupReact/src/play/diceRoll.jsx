@@ -9,13 +9,17 @@ export function DiceRoll(props) {
     const[diceTotal, setDiceTotal] = React.useState(props.diceTotal)
     const[diceType, setDiceType] = React.useState();
     const[diceNumber, setDiceNumber] = React.useState(0);
+    const sound = new Audio('/diceroll.mp3');
+    sound.load();
 
     async function rollDice(){
         let total = 0;
         for(let i = 0; i < diceNumber; i++){
             total += Math.floor(Math.random() * diceType) + 1;
         }
+        
         setDiceTotal(total, diceType, diceNumber);
+        sound.play();
         await fetch('/api/rolls', {
             method: 'POST',
             headers: {
