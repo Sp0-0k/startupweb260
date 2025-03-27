@@ -1,4 +1,4 @@
-const { WebSocketServer } = require('ws');
+const { WebSocketServer, WebSocket } = require('ws');
 
 function peerProxy(server) {
     const socketServer = new WebSocketServer({ server });
@@ -15,7 +15,7 @@ function peerProxy(server) {
         });
 
         socket.on('pong', () => {
-            socket.send('pong');
+            socket.isAlive = true; // Add this line to mark as alive
         });
     });
 

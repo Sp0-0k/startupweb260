@@ -10,6 +10,7 @@ export function PlayerRolls(props) {
 
     React.useEffect(() => {
         RollNotifier.addHandler(handleRollEvent);
+        RollNotifier.setRoomCode(props.roomCode);
 
         return () => {
             RollNotifier.removeHandler(handleRollEvent);
@@ -19,8 +20,8 @@ export function PlayerRolls(props) {
     function handleRollEvent(event){
         setEvent((prevEvents) => {
             let newEvents = [event, ...prevEvents];
-            if (newEvents.length > 3){
-                newEvents = newEvents.slice(0, 3);
+            if (newEvents.length > 4){
+                newEvents = newEvents.slice(0, 4);
             }
             return newEvents;
         });
@@ -31,7 +32,7 @@ export function PlayerRolls(props) {
         for (const [i, event] of events.entries()){
             let message = 'unknown';
             if (event.type === RollEvent.RollType) {
-                message = `${event.userName} rolled ${event.diceNum} d${event.diceSides}: ${event.diceTotal}`;
+                message = `${event.userName} rolled ${event.diceNumber} d${event.diceType}: ${event.totalRoll}`;
             }
             else if (event.type === RollEvent.CritType) {
                 message = `${event.userName} rolled a crit!`;

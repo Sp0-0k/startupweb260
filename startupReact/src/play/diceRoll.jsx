@@ -20,7 +20,7 @@ export function DiceRoll(props) {
         
         setDiceTotal(total, diceType, diceNumber);
         sound.play();
-        const newRoll = { userName: props.userName, totalRoll: total, roomCode: props.roomCode, diceType: diceType, diceNumber: diceNumber };
+        const newRoll = { type: 'roll', userName: props.userName, totalRoll: total, roomCode: props.roomCode, diceType: diceType, diceNumber: diceNumber };
         await fetch('/api/rolls', {
             method: 'POST',
             headers: {

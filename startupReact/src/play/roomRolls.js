@@ -5,9 +5,9 @@ const RollEvent = {
 
 class RollEventMessage {
     constructor(type, diceSides, diceNum, diceTotal, userName) {
-        this.diceSides = diceSides;
-        this.diceNum = diceNum;
-        this.diceTotal = diceTotal;
+        this.diceType = diceSides;
+        this.diceNumber = diceNum;
+        this.totalRoll = diceTotal;
         this.userName = userName;
         this.type = type;   
     }
@@ -16,22 +16,39 @@ class RollEventMessage {
 class RollMessageNotifier {
     events = [];
     handlers = [];
+    roomCode = '000';
 
     constructor() {
-
-        let port = window.location.port;
-        const protocol = window.location.protocol === 'https:' ? 'ws' : 'wss';
-        this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
-        this.socket.onopen = (event) => {
+        // Use secure protocol if page is secure
+        const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+        
+        // For local development, hardcode the backend port
+        // In production, use empty string to use the same port
+        const port = window.location.hostname === 'localhost' ? ':4000' : '';
+        
+        // Create WebSocket connection (no /ws path)
+        this.socket = new WebSocket(`${protocol}://${window.location.hostname}${port}`);
+        
+        console.log(`Connecting to WebSocket: ${protocol}://${window.location.hostname}${port}`);
+        
+        this.socket.onopen = () => {
+            console.log('WebSocket connection established');
             this.receiveEvent(new RollEventMessage('connected', 0, 0, 0, ''));
-        }
+        };
+        
+        this.socket.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
+
         this.socket.onclose = (event) => {
             this.receiveEvent(new RollEventMessage('disconnected', 0, 0, 0, ''));
         }
         this.socket.onmessage = async (msg) => {
             try {
                 const event = JSON.parse(await msg.data.text());
-                this.receiveEvent(event);
+                if (event.roomCode === this.roomCode) {
+                    this.receiveEvent(event);
+                }
             } catch (error) {
                 console.error('Error processing message:', error);
             }
@@ -39,8 +56,7 @@ class RollMessageNotifier {
     }
 
     broadcastEvent(newRoll) {
-        const newRollMessage = new RollEventMessage(newRoll.type, newRoll.diceSides, newRoll.diceNum, newRoll.diceTotal, newRoll.userName);
-        this.socket.send(JSON.stringify(newRollMessage));
+        this.socket.send(JSON.stringify(newRoll));
     }
 
     addHandler(handler){
@@ -56,7 +72,9 @@ class RollMessageNotifier {
         this.handlers.forEach((h) => h(event));
     }
 
-
+    setRoomCode(roomCode){
+        this.roomCode = roomCode;
+    }
 }
 
 const RollNotifier = new RollMessageNotifier();

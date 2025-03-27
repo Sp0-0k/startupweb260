@@ -6,7 +6,7 @@ export default defineConfig({
       '/api': 'http://localhost:4000',
 
       '/ws': {
-        target: 'http://localhost:4000',
+        target: 'ws://localhost:4000',
         ws: true,
       },
     },
