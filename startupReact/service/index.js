@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const uuid = require('uuid');
 const bcrypt = require('bcryptjs');
 const DB = require('./database.js');
+const { peerProxy } = require('./websocket.js');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -127,10 +128,9 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-initDatabase().then(() => {
-  app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-  });
-}).catch(error => {
-  console.error('Startup error:', error);
+const httpService = app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+  initDatabase();
 });
+
+peerProxy(httpService);

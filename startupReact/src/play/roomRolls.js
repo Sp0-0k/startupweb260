@@ -1,71 +1,3 @@
-function rollDice(diceNumber, diceType){
-    let total = 0;
-    for(let i = 0; i < diceNumber; i++){
-        total += Math.floor(Math.random() * diceType) + 1;
-    }
-    return(total);
-}
-
-function pickDice(inputNum){
-    let diceType = 0;
-    switch(inputNum){
-        case 0:
-            diceType = 4;
-            break;
-        case 1:
-            diceType = 6;
-            break;
-        case 2:
-            diceType = 8;
-            break;
-        case 3:
-            diceType = 10;
-            break;
-        case 4:
-            diceType = 12;
-            break;
-        case 5:
-            diceType = 20;
-            break;
-        case 6:
-            diceType = 100;
-            break;
-        default:
-            diceType = 20;
-    }
-    return diceType;
-}
-
-function randUser(inputNum){
-    let userName = '';
-    switch(inputNum){
-        case 0:
-            userName = 'James';
-            break;
-        case 1:
-            userName = 'Kirk';
-            break;
-        case 2:
-            userName = 'Megan';
-            break;
-        case 3:
-            userName = 'Jen';
-            break;
-        case 4:
-            userName = 'Chris';
-            break;
-        case 5:
-            userName = 'Alex';
-            break;
-        case 6:
-            userName = 'Sam';
-            break;
-        default:
-            userName = 'Anna';
-    }
-    return userName;
-}
-
 const RollEvent = {
     RollType: 'roll',
     CritType: 'crit',
@@ -87,33 +19,28 @@ class RollMessageNotifier {
 
     constructor() {
 
-        setInterval(async () => {
-            const diceType = pickDice(Math.floor(Math.random() * 6));
-            const diceNumber = Math.floor(Math.random() * 10) + 1;
-            const total = rollDice(diceNumber, diceType);
-            const userName = randUser(Math.floor(Math.random() * 6));
-            const type = 'roll';
-
-            await fetch('/api/rolls', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userName: userName,
-                    totalRoll: total,
-                    roomCode: '000',
-                    diceType: diceType,
-                    diceNumber: diceNumber
-                }),
-            })
-            this.broadcastEvent(RollEvent.RollType, diceType, diceNumber, total, userName);
-        }, 10000);
+        let port = window.location.port;
+        const protocol = window.location.protocol === 'https:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+        this.socket.onopen = (event) => {
+            this.receiveEvent(new RollEventMessage('connected', 0, 0, 0, ''));
+        }
+        this.socket.onclose = (event) => {
+            this.receiveEvent(new RollEventMessage('disconnected', 0, 0, 0, ''));
+        }
+        this.socket.onmessage = async (msg) => {
+            try {
+                const event = JSON.parse(await msg.data.text());
+                this.receiveEvent(event);
+            } catch (error) {
+                console.error('Error processing message:', error);
+            }
+        }
     }
 
-    broadcastEvent(type, diceSides, diceNum, diceTotal, userName) {
-        const event = new RollEventMessage(type, diceSides, diceNum, diceTotal, userName);
-        this.receiveEvent(event);
+    broadcastEvent(newRoll) {
+        const newRollMessage = new RollEventMessage(newRoll.type, newRoll.diceSides, newRoll.diceNum, newRoll.diceTotal, newRoll.userName);
+        this.socket.send(JSON.stringify(newRollMessage));
     }
 
     addHandler(handler){
