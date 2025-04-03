@@ -53,7 +53,7 @@ apiRouter.post('/auth/login', async (req, res) => {
         return;
       }
     }
-    res.status(401).send({ msg: 'Unauthorized' });
+    res.status(400).send({ msg: 'Invalid Username or Password' });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).send({ msg: 'Server error during login' });

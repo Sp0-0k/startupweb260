@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { LoginResponse } from './loginResponse.jsx';
 import Button from 'react-bootstrap/Button';
 
 export function Unauthenticated(props) {
@@ -40,9 +40,9 @@ export function Unauthenticated(props) {
 return (
     <>
         <h3>Log in and join a room</h3>
-        <form method="get" action="play.html">
+        <div className='input-group mb-3'>
             <div className="form-group">
-                <input type="email" className="form-control centeredText verticalSpacing" id="exampleInputEmail" placeholder="username" onChange={(e) => setUserName(e.target.value)}/>
+                <input type="username" className="form-control centeredText verticalSpacing" id="exampleInputUsername" placeholder="username" onChange={(e) => setUserName(e.target.value)}/>
             </div>
             <div className="form-group">
                 <input type="password" className="form-control centeredText verticalSpacing" id="exampleInputPassword" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
@@ -54,7 +54,10 @@ return (
                 <button type="submit" className="btn btn-primary" onClick={() => loginUser()} disabled={!userName || !password || !roomCode}>Login</button>
                 <button style={{"marginLeft":"15px"}}type="button" className="btn btn-primary" onClick={() => createUser()} disabled={!userName || !password || !roomCode}>Create Account</button>
             </div>
-        </form>
+        </div>
+
+
+    <LoginResponse message={displayError} onHide={() => setDisplayError(null)} />
         </>
     );
 
