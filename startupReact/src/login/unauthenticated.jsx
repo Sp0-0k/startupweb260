@@ -40,13 +40,15 @@ export function Unauthenticated(props) {
 return (
     <>
         <h3>Log in and join a room</h3>
-        <div className='input-group mb-3'>
+        <div className='mb-3'>
             <div className="form-group">
                 <input type="username" className="form-control centeredText verticalSpacing" id="exampleInputUsername" placeholder="username" onChange={(e) => setUserName(e.target.value)}/>
             </div>
+
             <div className="form-group">
                 <input type="password" className="form-control centeredText verticalSpacing" id="exampleInputPassword" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
             </div>
+
             <div className="form-group">
                 <input type="text" className="form-control centeredText verticalSpacing" id="exampleInputRoomcode" placeholder="room code" onChange={(e) => setRoomCode(e.target.value)}/>
             </div> 

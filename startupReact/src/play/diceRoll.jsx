@@ -13,6 +13,10 @@ export function DiceRoll(props) {
     sound.load();
 
     async function rollDice(){
+        if (diceType === undefined || diceNumber <= 0){
+            alert("Please select a dice type and number of dice to roll");
+            return;
+        }
         let total = 0;
         for(let i = 0; i < diceNumber; i++){
             total += Math.floor(Math.random() * diceType) + 1;
