@@ -16,6 +16,7 @@ export function Authenticated(props) {
       })
       .finally(() => {
         localStorage.removeItem('userName');
+        localStorage.removeItem('roomCode');
         props.onLogout();
       });
   }
