@@ -121,8 +121,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - Backend has a websocket connection setup in websocket.js
+- [x] **Frontend makes WebSocket connection** - Frontend connects to websocket on page load via roomRolls.js
+- [x] **Data sent over WebSocket connection** - Rolls are sent as JSON to every WebSocket connection in the same room
+- [x] **WebSocket data displayed** - Rolls in the same room recieved over WebSocket are displayed on the play page
+- [x] **Application is fully functional** - Everything works as intended! From login to the rolls in the room to the actually rolling and websocket!
