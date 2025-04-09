@@ -24,10 +24,10 @@ export function Authenticated(props) {
   return (
     <div>
       <div className='loginInfo'>Welcome {props.userName} <br /> Your room is {props.roomCode}</div>
-      <Button variant='primary' onClick={() => navigate('/play')}>
+      <Button style={{ margin: '5px' }} variant='primary' onClick={() => navigate('/play')}>
         Play
       </Button>
-      <Button variant='secondary' onClick={() => logout()}>
+      <Button style={{ margin: '5px' }} variant='secondary' onClick={() => logout()}>
         Logout
       </Button>
     </div>

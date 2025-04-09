@@ -28,16 +28,17 @@ export function Room(props) {
       rollsRows.push(
         <tr key={i}>
           <td>{roll.userName.split('@')[0]}</td>
-          <td>{roll.totalRoll}</td>
           <td>{roll.diceType}</td>
           <td>{roll.diceNumber}</td>
+          <td>{roll.totalRoll}</td>
+          <td>{new Date(roll.date).toLocaleString()}</td>
         </tr>
       );
     }
   } else {
     rollsRows.push(
       <tr key='0'>
-        <td colSpan='4'>{loading ? 'Loading...' : 'Be the first to roll in your room'}</td>
+        <td colSpan='5'>{loading ? 'Loading...' : 'Be the first to roll in your room'}</td>
       </tr>
     );
   }
@@ -45,7 +46,7 @@ export function Room(props) {
   return (
     <main className='container-fluid text-center'>
       <div className="justify-content-between align-items-center mb-3">
-        <h3 className="text-dark">Room {props.roomCode}'s Rolls</h3>
+        <h3 className="text-light">Room {props.roomCode}'s Rolls</h3>
         <br />
         <button 
           className="btn btn-primary" 
@@ -56,13 +57,14 @@ export function Room(props) {
         </button>
       </div>
       
-      <table className='table table-warning table-striped-columns'>
-        <thead className='table-active'>
+      <table className='table table-dark table-striped-columns table-responsive'>
+        <thead className='table-dark'>
           <tr>
             <th>Name</th>
-            <th>Total</th>
             <th>Dice Type</th>
             <th>Number of Dice</th>
+            <th>Total</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody id='rolls'>{rollsRows}</tbody>

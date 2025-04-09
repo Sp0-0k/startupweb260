@@ -46,7 +46,6 @@ function findRolls(roomCode) {
   const query = { roomCode: roomCode };
   const options = {
     sort: { "date": 1 },
-    limit: 12,
   };
   const cursor = rollsCollection.find(query, options);
   return cursor.toArray();

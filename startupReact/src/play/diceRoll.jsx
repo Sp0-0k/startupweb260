@@ -58,7 +58,7 @@ export function DiceRoll(props) {
                 <div style={{"textAlign" : "center"}}>
                 <label>Dice type:</label>
             
-                <DropdownButton id="dropdown-basic-button" title={titleOfDropdown}>
+                <DropdownButton style={{"marginTop" : "5px"}}id="dropdown-basic-button" variant="secondary" title={titleOfDropdown}>
                     <DropdownItem ><div onClick={() => {setDiceType(4); setTitleOfDropdown("d4")}}>d4</div></DropdownItem>
                     <DropdownItem ><div onClick={() => {setDiceType(6); setTitleOfDropdown("d6")}}>d6</div></DropdownItem>
                     <DropdownItem ><div onClick={() => {setDiceType(8); setTitleOfDropdown("d8")}}>d8</div></DropdownItem>
@@ -68,7 +68,7 @@ export function DiceRoll(props) {
                     <DropdownItem ><div onClick={() => {setDiceType(100); setTitleOfDropdown("d100")}}>d100</div></DropdownItem>
                 </DropdownButton>
 
-                <button type="button" onClick={rollDice} className="btn btn-secondary">Roll</button>
+                <button type="button" style={{"marginTop" : "15px"}}onClick={rollDice} className="btn btn-primary">Roll</button>
                 </div>
             </form>
 
@@ -77,7 +77,7 @@ export function DiceRoll(props) {
 
 
         <div style={{"minWidth" : "40vh"}}>
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 641.2 419.7" style={{"enableBackground" :"new 0 0 641.2 419.7", fill : "purple"}} xmlSpace="preserve">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 641.2 419.7" style={{ "enableBackground": "new 0 0 641.2 419.7", fill: "mediumorchid"}} xmlSpace="preserve">
         <g>
             <path className="st0" d="M474.1,363.2l56.2-209.7L376.8,0L167.1,56.2l-56.2,209.7l153.5,153.5L474.1,363.2L474.1,363.2L474.1,363.2z
             M519.8,156.3l-50.6,188.8l-87.6-327L519.8,156.3z M460.9,349.9L129,261L371.9,18.1L460.9,349.9z M174.7,63.8l188.8-50.6
