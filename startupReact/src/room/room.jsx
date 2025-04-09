@@ -43,9 +43,10 @@ export function Room(props) {
   }
 
   return (
-    <main className='container-fluid bg-dark text-center'>
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3 className="text-light">Room Rolls</h3>
+    <main className='container-fluid text-center'>
+      <div className="justify-content-between align-items-center mb-3">
+        <h3 className="text-dark">Room {props.roomCode}'s Rolls</h3>
+        <br />
         <button 
           className="btn btn-primary" 
           onClick={fetchRolls} 
@@ -56,7 +57,7 @@ export function Room(props) {
       </div>
       
       <table className='table table-warning table-striped-columns'>
-        <thead className='table-dark'>
+        <thead className='table-active'>
           <tr>
             <th>Name</th>
             <th>Total</th>

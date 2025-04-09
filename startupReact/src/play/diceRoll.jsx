@@ -3,12 +3,14 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownItem from 'react-bootstrap/DropdownItem'
 import { RollEvent, RollNotifier } from './roomRolls.js';
+import { LoginResponse } from './loginResponse.jsx';
 
 
 export function DiceRoll(props) {
     const[diceTotal, setDiceTotal] = React.useState(props.diceTotal)
     const[diceType, setDiceType] = React.useState();
     const[diceNumber, setDiceNumber] = React.useState(0);
+    const [displayError, setDisplayError] = React.useState(null);
     const sound = new Audio('/diceroll.mp3');
     sound.load();
 
@@ -25,13 +27,18 @@ export function DiceRoll(props) {
         setDiceTotal(total, diceType, diceNumber);
         sound.play();
         const newRoll = { type: 'roll', userName: props.userName, totalRoll: total, roomCode: props.roomCode, diceType: diceType, diceNumber: diceNumber };
-        await fetch('/api/rolls', {
+        const response = await fetch('/api/rolls', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newRoll),
         });
+        if (response?.status !== 201) {
+            const body = await response.json();
+            setDisplayError(`⚠ Error: ${body.msg}`);
+            return;
+        }
         RollNotifier.broadcastEvent(newRoll);
     }
 
@@ -80,7 +87,9 @@ export function DiceRoll(props) {
             </svg>      
             </div>
         </div>
+            <LoginResponse message={displayError} onHide={() => setDisplayError(null)} />
     </div>
+
     );
 
 

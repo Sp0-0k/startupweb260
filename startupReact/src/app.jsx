@@ -21,11 +21,11 @@ export default function App() {
 
   return (
   <BrowserRouter>
-  <div className='body bg-dark text-light'>
+  <div className='body text-light'>
     <header className="container-fluid">
-      <nav className = "navbar fixed-top navbar-dark" style={{"borderBottom" : "white thin solid"}}>
-        <span><img src="dice2.png" style={{"height": "5vh"}}/></span><a className = "navbar-brand menuItems" href="#">5e Dice Tools</a>
-        <menu className ="navbar-nav">
+          <nav className="navbar fixed-top navbar-dark" style={{ "borderBottom": "black solid", "backgroundColor": "#440D0F"}}>
+            <span><img src="dice2.png" style={{ "height": "5vh"}}/></span><a className = "navbar-brand menuItems" href="#">5e Dice Tools</a>
+            <menu className="navbar-nav">
           <li className="nav-item menuItems"><NavLink className="nav-link" to="/">Home</NavLink></li>
           <li className="nav-item menuItems"><NavLink className="nav-link" to="about">About</NavLink></li>
           {authState === AuthState.Authenticated && (<li className="nav-item menuItems"><NavLink className = "nav-link" to="play">Play</NavLink></li>)}
@@ -34,7 +34,7 @@ export default function App() {
       </nav>
     </header>
 
-    <Routes>
+        <Routes >
       <Route path='/' element={<Login userName={userName} authState={authState} roomCode={roomCode} onAuthChange={(userName, authState, roomCode) => {setAuthState(authState); setUserName(userName); setRoomCode(roomCode)}}/>} exact />
       <Route path='/play' element={<Play userName={userName} roomCode={roomCode}/>} />
       <Route path= '/room' element={<Room userName={userName} roomCode={roomCode}/>} />
@@ -43,7 +43,7 @@ export default function App() {
     </Routes>
 
 
-    <footer className="bg-dark text-white-50">
+        <footer className="text-white-50" style={{ "backgroundColor": "440D0F" }}>
       <div className="container-fluid">
         <span className="text-reset">Kirk McMasters</span>
         <a className="text-reset" href="https://github.com/Sp0-0k/startupweb260">GitHub</a>

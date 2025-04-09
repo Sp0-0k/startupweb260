@@ -4,7 +4,8 @@ export function About() {
 
   return (
     <main>
-      <h1>About 5e Dice Tools</h1>
+      <br />
+      <h1 style={{"paddingTop" : "5vh"}}> About 5e Dice Tools</h1>
         <p style={{"paddingRight": "15vw", "paddingLeft":"15vw", "marginTop":"10vh"}}>
           5e Dice Tools is a web application that allows users to roll dice for the popular tabletop role-playing game Dungeons & Dragons. The application is designed to be user-friendly and accessible to players of all experience levels. <br />
           The application features a simple interface that allows users to input the number and type of dice they want to roll, and then displays the results of the roll. Users can also create accounts and join rooms to roll dice with friends in real-time. <br />

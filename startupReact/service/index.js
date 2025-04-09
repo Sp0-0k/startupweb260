@@ -28,8 +28,13 @@ async function initDatabase() {
 }
 
 apiRouter.post('/auth/create', async (req, res) => {
+  if (isNaN(req.body.roomCode)) {
+    res.status(400).send({ msg: 'Invalid Room Code, please input a number' })
+    return;
+  }
   if (await findUser('name', req.body.name)) {
     res.status(409).send({ msg: 'Existing user' });
+    return;
   } else {
     const user = await createUser(req.body.name, req.body.password);
 
@@ -39,6 +44,10 @@ apiRouter.post('/auth/create', async (req, res) => {
 });
 
 apiRouter.post('/auth/login', async (req, res) => {
+  if(isNaN(req.body.roomCode)){
+    res.status(400).send({ msg: 'Invalid Room Code, please input a number'})
+    return;
+  }
   try {
     const user = await findUser('name', req.body.name);
     if (user) {
@@ -93,6 +102,14 @@ app.use((_req, res) => {
 });
 
 apiRouter.post('/rolls', verifyAuth, async (req, res) => {
+  if (!Number.isInteger(Number(req.body.diceNumber))){
+    res.status(400).send({ msg: 'Invalid dice number, please provide a valid number' });
+    return;
+  }
+  if (isNaN(req.body.diceType)){
+    res.status(400).send({ msg: 'Invalid dice type, please select a valid type' });
+    return;
+  }
   await DB.rollInsert(req.body);
   res.status(201).send({ msg: 'Roll inserted successfully' });
 });

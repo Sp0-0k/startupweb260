@@ -30,7 +30,7 @@ export function Unauthenticated(props) {
       localStorage.setItem('roomCode', roomCode);
       props.onLogin(userName, roomCode);
     } else {
-      const body = await response.json();
+        const body = await response.json();
       setDisplayError(`⚠ Error: ${body.msg}`);
     }
   }
@@ -39,7 +39,7 @@ export function Unauthenticated(props) {
 
 return (
     <>
-        <h3>Log in and join a room</h3>
+        <h3 style={{"paddingTop":"5vh","paddingBottom": "5vh"}}>Log in and join a room</h3>
         <div className='mb-3'>
             <div className="form-group">
                 <input type="username" className="form-control centeredText verticalSpacing" id="exampleInputUsername" placeholder="username" onChange={(e) => setUserName(e.target.value)}/>
@@ -50,9 +50,9 @@ return (
             </div>
 
             <div className="form-group">
-                <input type="text" className="form-control centeredText verticalSpacing" id="exampleInputRoomcode" placeholder="room code" onChange={(e) => setRoomCode(e.target.value)}/>
+                <input type="text" inputMode="numeric" className="form-control centeredText verticalSpacing" id="exampleInputRoomcode" placeholder="room code" onChange={(e) => setRoomCode(e.target.value)}/>
             </div> 
-            <div className="centeredText verticalSpacing">
+            <div className="centeredText verticalSpacing" style={{"paddingTop":"2vh"}}>
                 <button type="submit" className="btn btn-primary" onClick={() => loginUser()} disabled={!userName || !password || !roomCode}>Login</button>
                 <button style={{"marginLeft":"15px"}}type="button" className="btn btn-primary" onClick={() => createUser()} disabled={!userName || !password || !roomCode}>Create Account</button>
             </div>
