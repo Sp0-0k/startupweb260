@@ -5,7 +5,28 @@
     flex-direction: column;
     min-width: 375px;
     height:fit-content;
+}
+
+.red-body{
     background-color: #641417;
+}
+
+.red-header{
+    background-color: #440D0F;
+}
+
+.purple-body{
+    background-color: #a70b80;
+}
+.purple-header{
+    background-color: #6d0a54;
+}
+
+.blue-body{
+    background-color: #0b4ea7;
+}
+.blue-header{
+    background-color: #0a2d6d;
 }
 
 header{

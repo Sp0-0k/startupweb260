@@ -10,6 +10,7 @@ import { About } from './about/about';
 import { Room } from './room/room';
 import { AudioMuteButton } from './audioMute';
 import { AuthState } from './login/authState';
+import { ThemeChanger } from './themeChanger';
 
 export default function App() {
 
@@ -23,7 +24,7 @@ export default function App() {
   <BrowserRouter>
   <div className='body text-light'>
     <header className="container-fluid">
-          <nav className="navbar fixed-top navbar-dark" style={{ "borderBottom": "black solid", "backgroundColor": "#440D0F"}}>
+          <nav className="navbar fixed-top navbar-dark" style={{ "borderBottom": "black solid"}}>
             <span><img src="dice2.png" style={{ "height": "5vh"}}/></span><a className = "navbar-brand menuItems" href="#">5e Dice Tools</a>
             <menu className="navbar-nav">
           <li className="nav-item menuItems"><NavLink className="nav-link" to="/">Home</NavLink></li>
@@ -43,9 +44,10 @@ export default function App() {
     </Routes>
 
 
-        <footer className="text-white-50" style={{ "backgroundColor": "440D0F" }}>
+        <footer className="text-white-50" style={{}}>
       <div className="container-fluid">
         <span className="text-reset">Kirk McMasters</span>
+        <a><ThemeChanger /></a>
         <a className="text-reset" href="https://github.com/Sp0-0k/startupweb260">GitHub</a>
         <a><AudioMuteButton /></a>
       </div>
