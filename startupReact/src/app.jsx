@@ -6,7 +6,6 @@ import { Login } from './login/login';
 import { Play } from './play/play';
 import { About } from './about/about';
 import { Room } from './room/room';
-import { AudioMuteButton } from './audioMute';
 import { AuthState } from './login/authState';
 import { ThemeChanger } from './themeChanger';
 
@@ -52,7 +51,6 @@ export default function App() {
           <div className="author">Forged by Kirk McMasters</div>
           <div className="footer-links">
             <ThemeChanger />
-            <AudioMuteButton />
             <a href="https://github.com/Sp0-0k/startupweb260" target="_blank" rel="noreferrer">Arcane Source</a>
           </div>
         </footer>
