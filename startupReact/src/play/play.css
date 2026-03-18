@@ -108,6 +108,19 @@
   background: transparent !important;
 }
 
+/* Hide standard browser spin buttons on number inputs */
+.center-num::-webkit-outer-spin-button,
+.center-num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.center-num[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .dice-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

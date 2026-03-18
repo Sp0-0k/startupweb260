@@ -16,7 +16,12 @@ export function Login({ userName, authState, onAuthChange, roomCode }) {
 
         <div className="auth-container">
           {authState === AuthState.Authenticated && (
-            <Authenticated userName={userName} roomCode={roomCode} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated, roomCode)} />
+            <Authenticated
+              userName={userName}
+              roomCode={roomCode}
+              onLogout={() => onAuthChange(userName, AuthState.Unauthenticated, roomCode)}
+              onRoomChange={(newRoomCode) => onAuthChange(userName, AuthState.Authenticated, newRoomCode)}
+            />
           )}
           {authState === AuthState.Unauthenticated && (
             <Unauthenticated userName={userName} roomCode={roomCode} onLogin={(loginUserName, loginRoomCode) => { onAuthChange(loginUserName, AuthState.Authenticated, loginRoomCode); }} />

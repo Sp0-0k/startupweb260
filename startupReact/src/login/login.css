@@ -94,6 +94,24 @@
   color: var(--accent-primary);
 }
 
+.room-edit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.edit-prompt {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.small-input {
+  text-align: center;
+  max-width: 150px;
+}
+
 .excuse-container {
   margin-top: 4rem;
   display: flex;
