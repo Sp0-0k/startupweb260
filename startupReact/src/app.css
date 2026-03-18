@@ -57,6 +57,22 @@
   --glass-bg: rgba(15, 29, 56, 0.75);
 }
 
+.green-theme {
+  /* Druidic / Nature */
+  --bg-dark: #142114;
+  --accent-primary: #4ade80;
+  --accent-glow: rgba(74, 222, 128, 0.4);
+  --glass-bg: rgba(20, 33, 20, 0.75);
+}
+
+.teal-theme {
+  /* Eldritch / Fae */
+  --bg-dark: #0f2b2b;
+  --accent-primary: #2dd4bf;
+  --accent-glow: rgba(45, 212, 191, 0.4);
+  --glass-bg: rgba(15, 43, 43, 0.75);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

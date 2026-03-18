@@ -21,16 +21,18 @@ export function ThemeChanger() {
                     bottom: '100%',
                     right: 0,
                     marginBottom: '0.5rem',
-                    padding: '1rem',
+                    padding: '0.5rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '0.5rem',
+                    gap: '0.25rem',
                     minWidth: '150px',
                     zIndex: 100
                 }}>
-                    <button className="cinematic-btn primary" onClick={() => { setTheme('red'); setOpen(false) }}>Crimson Core</button>
-                    <button className="cinematic-btn primary" onClick={() => { setTheme('purple'); setOpen(false) }}>Nebula Purple</button>
-                    <button className="cinematic-btn primary" onClick={() => { setTheme('blue'); setOpen(false) }}>Cobalt Drive</button>
+                    <button className="cinematic-btn primary red-theme" style={{ padding: '0.4rem 1rem', fontSize: '0.85rem' }} onClick={() => { setTheme('red'); setOpen(false) }}>Crimson Core</button>
+                    <button className="cinematic-btn primary purple-theme" style={{ padding: '0.4rem 1rem', fontSize: '0.85rem' }} onClick={() => { setTheme('purple'); setOpen(false) }}>Nebula Purple</button>
+                    <button className="cinematic-btn primary blue-theme" style={{ padding: '0.4rem 1rem', fontSize: '0.85rem' }} onClick={() => { setTheme('blue'); setOpen(false) }}>Cobalt Drive</button>
+                    <button className="cinematic-btn primary green-theme" style={{ padding: '0.4rem 1rem', fontSize: '0.85rem' }} onClick={() => { setTheme('green'); setOpen(false) }}>Sylvan Green</button>
+                    <button className="cinematic-btn primary teal-theme" style={{ padding: '0.4rem 1rem', fontSize: '0.85rem' }} onClick={() => { setTheme('teal'); setOpen(false) }}>Eldritch Teal</button>
                 </div>
             )}
         </div>
