@@ -2,3 +2,4 @@ node_modules
 .*.swp
 .DS_Store
 dbConfig.json
+GEMINI.md
