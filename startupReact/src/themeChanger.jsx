@@ -1,52 +1,38 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 
 export function ThemeChanger() {
     const [theme, setTheme] = React.useState('red');
+    const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
-        const header = document.getElementsByTagName('nav')[0];
-        header.className = `${theme}-header navbar fixed-top navbar-dark`;
-        const main = document.getElementsByClassName('body')[0];
-        main.className = `${theme}-body body text-light`; 
-        
+        document.body.className = `${theme}-theme`;
     }, [theme]);
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
+    // Close menu when clicking outside could be added, but for now simple toggle
     return (
-        <div>
-            <Button
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-            >
-                Pick a Theme
-            </Button>
-            <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                    'aria-labelledby': 'basic-button',
-                }}
-            >
-                <MenuItem onClick={() => { setTheme('red'); handleClose(); }}>Red</MenuItem>
-                <MenuItem onClick={() => { setTheme('purple'); handleClose(); }}>Purple</MenuItem>
-                <MenuItem onClick={() => { setTheme('blue'); handleClose(); }}>Blue</MenuItem>
-            </Menu>
+        <div className="theme-changer" style={{ position: 'relative', display: 'inline-block' }}>
+            <button className="cinematic-btn" onClick={() => setOpen(!open)}>
+                Theme: {theme.charAt(0).toUpperCase() + theme.slice(1)}
+            </button>
+
+            {open && (
+                <div className="glass-panel theme-menu fade-in" style={{
+                    position: 'absolute',
+                    bottom: '100%',
+                    right: 0,
+                    marginBottom: '0.5rem',
+                    padding: '1rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.5rem',
+                    minWidth: '150px',
+                    zIndex: 100
+                }}>
+                    <button className="cinematic-btn primary" onClick={() => { setTheme('red'); setOpen(false) }}>Crimson Core</button>
+                    <button className="cinematic-btn primary" onClick={() => { setTheme('purple'); setOpen(false) }}>Nebula Purple</button>
+                    <button className="cinematic-btn primary" onClick={() => { setTheme('blue'); setOpen(false) }}>Cobalt Drive</button>
+                </div>
+            )}
         </div>
     );
 }

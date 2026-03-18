@@ -5,70 +5,77 @@ export function Room(props) {
   const [rolls, setRolls] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  // Function to fetch rolls from the database
   const fetchRolls = async () => {
     setLoading(true);
+    try {
       const response = await fetch(`/api/rolls/${props.roomCode}`);
       const data = await response.json();
-      setRolls(data);
+      setRolls(Array.isArray(data) ? data : []);
+    } catch (e) {
+      console.error(e);
+      setRolls([]);
+    } finally {
       setLoading(false);
+    }
   };
 
-  // Initial fetch when component mounts
   React.useEffect(() => {
     fetchRolls();
   }, [props.roomCode]);
 
   const rollsRows = [];
   if (rolls.length) {
-    // Create a copy of the array and reverse it so newest rolls appear first
     const reversedRolls = [...rolls].reverse();
-    
+
     for (const [i, roll] of reversedRolls.entries()) {
       rollsRows.push(
-        <tr key={i}>
-          <td>{roll.userName.split('@')[0]}</td>
-          <td>{roll.diceType}</td>
-          <td>{roll.diceNumber}</td>
-          <td>{roll.totalRoll}</td>
-          <td>{new Date(roll.date).toLocaleString()}</td>
+        <tr key={i} className="cinematic-row">
+          <td className="user-cell"><span className="dot"></span>{roll.userName.split('@')[0]}</td>
+          <td className="data-cell">d{roll.diceType}</td>
+          <td className="data-cell">x{roll.diceNumber}</td>
+          <td className="highlight-cell">{roll.totalRoll}</td>
+          <td className="date-cell">{new Date(roll.date).toLocaleDateString()} <span className="time">{new Date(roll.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span></td>
         </tr>
       );
     }
   } else {
     rollsRows.push(
-      <tr key='0'>
-        <td colSpan='5'>{loading ? 'Loading...' : 'Be the first to roll in your room'}</td>
+      <tr key='0' className="cinematic-row empty-row">
+        <td colSpan='5'>{loading ? 'Consulting the archives...' : 'The ledger is empty. No tales have been recorded here.'}</td>
       </tr>
     );
   }
 
   return (
-    <main className='container-fluid text-center'>
-      <div className="justify-content-between align-items-center mb-3">
-        <h3 className="text-light">Room {props.roomCode}'s Rolls</h3>
-        <br />
-        <button 
-          className="btn btn-primary" 
-          onClick={fetchRolls} 
+    <div className="room-container fade-in">
+      <div className="room-header">
+        <div className="title-group">
+          <h2>Gathering at <span>{props.roomCode}</span></h2>
+          <p className="subtitle">Chronicle of Rolls</p>
+        </div>
+        <button
+          className="cinematic-btn primary refresh-btn"
+          onClick={fetchRolls}
           disabled={loading}
         >
-          {loading ? 'Refreshing...' : 'Refresh Rolls'}
+          {loading ? 'Reading...' : 'Turn Page'}
         </button>
       </div>
-      
-      <table className='table table-dark table-striped-columns table-responsive'>
-        <thead className='table-dark'>
-          <tr>
-            <th>Name</th>
-            <th>Dice Type</th>
-            <th>Number of Dice</th>
-            <th>Total</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody id='rolls'>{rollsRows}</tbody>
-      </table>
-    </main>
+
+      <div className="glass-panel table-wrapper">
+        <table className="cinematic-table">
+          <thead>
+            <tr>
+              <th>Adventurer</th>
+              <th>Polyhedron</th>
+              <th>Quantity</th>
+              <th>Outcome</th>
+              <th>Recorded At</th>
+            </tr>
+          </thead>
+          <tbody>{rollsRows}</tbody>
+        </table>
+      </div>
+    </div>
   );
 }

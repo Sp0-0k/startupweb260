@@ -1,4 +1,323 @@
-.centered-text {
+/* Play Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 5%;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.user-badge,
+.room-badge {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+}
+
+.badge-value {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.badge-value.glow {
+  color: var(--accent-primary);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Control Panel Overrides */
+.control-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.config-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.config-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.number-input-wrapper {
+  display: flex;
+  align-items: stretch;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.spin-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  padding: 0 1.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.spin-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.center-num {
+  border: none !important;
+  background: transparent !important;
   text-align: center;
-  color: gray;
+  border-radius: 0;
+  border-left: 1px solid var(--glass-border) !important;
+  border-right: 1px solid var(--glass-border) !important;
+}
+
+.center-num:focus {
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.dice-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.dice-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 0.75rem 0;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.dice-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dice-btn.active {
+  background: var(--accent-glow);
+  border-color: var(--accent-primary);
+  color: #fff;
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+/* Scrying Orb Display */
+.scrying-orb {
+  height: 150px;
+  border-radius: 50%;
+  /* Orb shape */
+  width: 150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.9) 100%);
+  box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.8), 0 0 30px var(--accent-glow);
+  border: 2px solid var(--accent-primary);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0 40px var(--accent-glow);
+  }
+
+  100% {
+    transform: translateY(0px) scale(1);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+}
+
+.orb-value {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 0 20px var(--accent-primary), 0 0 40px var(--accent-primary);
+  z-index: 2;
+  position: relative;
+}
+
+/* Adventurer's Log */
+.log-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.parchment-feed {
+  flex: 1;
+  background: rgba(20, 15, 10, 0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 350px;
+  overflow-y: auto;
+  font-family: var(--font-body);
+}
+
+.event {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  border-bottom: 1px dashed var(--glass-border);
+  background: transparent;
+  transition: all 0.3s;
+}
+
+.event:last-child {
+  border-bottom: none;
+}
+
+.event.newest {
+  background: linear-gradient(90deg, var(--accent-glow), transparent);
+  border-left: 2px solid var(--accent-primary);
+}
+
+.event .timestamp {
+  font-size: 0.75rem;
+  color: var(--accent-primary);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-heading);
+}
+
+.event .log-msg {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.event.newest .log-msg {
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.event.empty {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-style: italic;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s var(--ease-cinematic) forwards;
+}
+
+/* Modal Overlay */
+.cinematic-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.cinematic-modal {
+  min-width: 300px;
+  max-width: 450px;
+  text-align: center;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 30px var(--accent-glow);
+  animation: fadeUp var(--transition-med);
+}
+
+.cinematic-modal .modal-body {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
 }

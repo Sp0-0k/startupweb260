@@ -1,27 +1,28 @@
 import React from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import {DiceRoll} from './diceRoll.jsx';
+import { DiceRoll } from './diceRoll.jsx';
 import { PlayerRolls } from './playerRolls.jsx';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-
+import './play.css';
 
 export function Play(props) {
-  const [diceTotal, setDiceTotal] = React.useState(localStorage.getItem('diceTotal') || 0);
+  const [diceTotal, setDiceTotal] = React.useState(localStorage.getItem('diceTotal') || '');
 
   return (
-    <main>
-      <div className="container-fluid" >
-        <span className="text-reset">Name: {props.userName}</span>
-      <br />
-        <span className="text-reset">Room: {props.roomCode}</span>
+    <div className="dashboard-container">
+      <header className="dashboard-header fade-in">
+        <div className="user-badge">
+          <span className="badge-label">Adventurer</span>
+          <span className="badge-value">{props.userName}</span>
+        </div>
+        <div className="room-badge">
+          <span className="badge-label">Room</span>
+          <span className="badge-value glow">{props.roomCode}</span>
+        </div>
+      </header>
+
+      <div className="dashboard-grid fade-in-up">
+        <DiceRoll diceTotal={diceTotal} userName={props.userName} roomCode={props.roomCode} />
+        <PlayerRolls userName={props.userName} roomCode={props.roomCode} />
       </div>
-      <h1>Lets roll some dice!</h1>
-
-      <DiceRoll diceTotal={diceTotal} userName={props.userName} roomCode={props.roomCode}/>
-
-      <PlayerRolls userName={props.userName} roomCode={props.roomCode} />
-
-      
-    </main>
+    </div>
   );
 }

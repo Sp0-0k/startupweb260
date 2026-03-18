@@ -1,8 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './login.css';
-
-import Button from 'react-bootstrap/Button';
 
 export function Authenticated(props) {
   const navigate = useNavigate();
@@ -22,14 +19,19 @@ export function Authenticated(props) {
   }
 
   return (
-    <div>
-      <div className='loginInfo'>Welcome {props.userName} <br /> Your room is {props.roomCode}</div>
-      <Button style={{ margin: '5px' }} variant='primary' onClick={() => navigate('/play')}>
-        Play
-      </Button>
-      <Button style={{ margin: '5px' }} variant='secondary' onClick={() => logout()}>
-        Logout
-      </Button>
+    <div className="glass-panel auth-status-panel">
+      <div className="loginInfo">
+        <h2>Welcome, <span>{props.userName}</span></h2>
+        <p>Your active room is <strong>{props.roomCode}</strong></p>
+      </div>
+      <div className="buttons-stack horizon">
+        <button className="cinematic-btn primary" onClick={() => navigate('/play')}>
+          Enter Room
+        </button>
+        <button className="cinematic-btn" onClick={() => logout()}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }

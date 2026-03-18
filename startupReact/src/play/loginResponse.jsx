@@ -1,15 +1,18 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
 export function LoginResponse(props) {
+    if (!props.message) return null;
+
     return (
-        <Modal {...props} show={props.message} centered>
-            <Modal.Body>{props.message}</Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
-        </Modal>
+        <div className="cinematic-modal-overlay fade-in">
+            <div className="glass-panel cinematic-modal">
+                <div className="modal-body">
+                    <p>{props.message}</p>
+                </div>
+                <div className="modal-footer mt-3" style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button className="cinematic-btn primary" onClick={props.onHide}>Acknowledge</button>
+                </div>
+            </div>
+        </div>
     );
 }
